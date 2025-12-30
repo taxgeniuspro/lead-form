@@ -194,9 +194,9 @@ Submitted: ${new Date().toLocaleString('en-US', { timeZone: 'America/New_York' }
   `.trim();
 
   try {
-    // CC to taxgenius.tax@gmail.com on all leads (unless it's the same as the recipient)
-    const ccEmail = 'taxgenius.tax@gmail.com';
-    const ccList = notificationEmail.toLowerCase() !== ccEmail.toLowerCase() ? [ccEmail] : [];
+    // CC to both taxgenius.tax@gmail.com and taxgenius.taxes@gmail.com on all leads
+    const ccEmails = ['taxgenius.tax@gmail.com', 'taxgenius.taxes@gmail.com'];
+    const ccList = ccEmails.filter(cc => cc.toLowerCase() !== notificationEmail.toLowerCase());
 
     // Build attachments array
     const attachments = [];
