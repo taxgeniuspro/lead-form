@@ -1,0 +1,320 @@
+{
+  "preparers": [
+    {
+      "code": "ah",
+      "firstName": "Ale",
+      "lastName": "Hamilton",
+      "email": "goldenprotaxes@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_ah.jpg"
+    },
+    {
+      "code": "aa",
+      "firstName": "Alicia",
+      "lastName": "Adams",
+      "email": "caydensmother29@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_aa.jpg"
+    },
+    {
+      "code": "ar",
+      "firstName": "Angela",
+      "lastName": "Richards",
+      "email": "angeladesigndocs@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_ar.jpg"
+    },
+    {
+      "code": "aw",
+      "firstName": "Anita",
+      "lastName": "Wilson",
+      "email": "anita@cm3mediagroup.pro",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_aw.jpg"
+    },
+    {
+      "code": "bh",
+      "firstName": "Brandon",
+      "lastName": "Hawkins",
+      "email": "busyb101@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_bh.jpg"
+    },
+    {
+      "code": "cg",
+      "firstName": "Carlton",
+      "lastName": "Gannaway",
+      "email": "f.alawishez@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_cg.jpg"
+    },
+    {
+      "code": "cs",
+      "firstName": "Ceia",
+      "lastName": "Stewart",
+      "email": "consult.me@mail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_cs.jpg"
+    },
+    {
+      "code": "cl",
+      "firstName": "Chelsea",
+      "lastName": "Lowe",
+      "email": "c.mitchell.lowe@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_cl.jpg"
+    },
+    {
+      "code": "cbw",
+      "firstName": "Cynthia",
+      "lastName": "Bacon-Whitted",
+      "email": "cbawhitted@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_cbw.jpg"
+    },
+    {
+      "code": "ds",
+      "firstName": "Derrick",
+      "lastName": "Stewart",
+      "email": "derrick.stewart31@yahoo.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_ds.jpg"
+    },
+    {
+      "code": "dw",
+      "firstName": "Devlin",
+      "lastName": "Watkins",
+      "email": "iradwatkins+dw@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_dw.jpg"
+    },
+    {
+      "code": "dh",
+      "firstName": "Devon",
+      "lastName": "Hamilton",
+      "email": "gxldmxb@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_dh.jpg"
+    },
+    {
+      "code": "eb",
+      "firstName": "Erica",
+      "lastName": "Bridges",
+      "email": "msboss110284@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_eb.jpg"
+    },
+    {
+      "code": "gw",
+      "firstName": "Gelisa",
+      "lastName": "White",
+      "email": "whitegelisa@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_gw.jpg"
+    },
+    {
+      "code": "ge",
+      "firstName": "Gregory",
+      "lastName": "Edwards",
+      "email": "gregthetaxgenius@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_ge.jpg"
+    },
+    {
+      "code": "hh",
+      "firstName": "Helen",
+      "lastName": "Holmes",
+      "email": "holmeshelen@yahoo.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_hh.jpg"
+    },
+    {
+      "code": "iw",
+      "firstName": "Ira",
+      "lastName": "Watkins",
+      "email": "iradwatkins@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_iw.jpg"
+    },
+    {
+      "code": "iw1",
+      "firstName": "Iran",
+      "lastName": "Watkins",
+      "email": "iradwatkins+iw1@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_iw1.jpg"
+    },
+    {
+      "code": "jp",
+      "firstName": "Jamel",
+      "lastName": "Pringle",
+      "email": "melpringle38@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_jp.jpg"
+    },
+    {
+      "code": "jm",
+      "firstName": "Javarre",
+      "lastName": "Massey",
+      "email": "javareemassey@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_jm.jpg"
+    },
+    {
+      "code": "kw",
+      "firstName": "Katie",
+      "lastName": "Winborn",
+      "email": "winbornkatie@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_kw.jpg"
+    },
+    {
+      "code": "kp",
+      "firstName": "Kemnetta",
+      "lastName": "Pillette",
+      "email": "kpillette7@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_kp.jpg"
+    },
+    {
+      "code": "lf",
+      "firstName": "LaJuana",
+      "lastName": "Frost",
+      "email": "lajuanafrost@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_lf.jpg"
+    },
+    {
+      "code": "lb",
+      "firstName": "Lenore",
+      "lastName": "Bohanon",
+      "email": "lbohanon398@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_lb.jpg"
+    },
+    {
+      "code": "mj",
+      "firstName": "Mariah",
+      "lastName": "Johnson",
+      "email": "msj1solution@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_mj.jpg"
+    },
+    {
+      "code": "mf",
+      "firstName": "Michael",
+      "lastName": "Finley",
+      "email": "mrmikefinley@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_mf.jpg"
+    },
+    {
+      "code": "ow",
+      "firstName": "Owliver",
+      "lastName": "Owl",
+      "email": "taxgenius.tax@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Professional Tax Services",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_ow.jpg"
+    },
+    {
+      "code": "pj",
+      "firstName": "Pamela",
+      "lastName": "Johnson",
+      "email": "pamelajatl3@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_pj.jpg"
+    },
+    {
+      "code": "rh",
+      "firstName": "Ray",
+      "lastName": "Hamilton",
+      "email": "rhamiltonfirm@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_rh.jpg"
+    },
+    {
+      "code": "sw",
+      "firstName": "Sarah",
+      "lastName": "Wilson",
+      "email": "hest8133@bellsouth.net",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_sw.jpg"
+    },
+    {
+      "code": "sj",
+      "firstName": "Shakia",
+      "lastName": "Gibbs",
+      "email": "shakiragibbs12@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_sj.jpg"
+    },
+    {
+      "code": "tp",
+      "firstName": "Tiffany & Jakobe",
+      "lastName": "Pearson",
+      "email": "jakobepearson18@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_tp.jpg"
+    },
+    {
+      "code": "tw",
+      "firstName": "Trevor",
+      "lastName": "Wikerson",
+      "email": "tjbw2005@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_tw.jpg"
+    },
+    {
+      "code": "wc",
+      "firstName": "Wendy",
+      "lastName": "Casimir",
+      "email": "wendycasimir@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_wc.jpg"
+    },
+    {
+      "code": "yw",
+      "firstName": "Yaumar",
+      "lastName": "Williams",
+      "email": "yaumarwilliams@gmail.com",
+      "phone": "1 (404) 627-1015",
+      "title": "Licensed Tax Professional",
+      "avatarUrl": "https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_yw.jpg"
+    }
+  ],
+  "defaultCode": "ow"
+}

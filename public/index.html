@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#22c55e">
+  <title>Tax Genius Pro - Get Up To $7,000 Tax Advance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --green-500: #22c55e;
+  --green-600: #16a34a;
+  --yellow-400: #facc15;
+  --yellow-900: #713f12;
+  --foreground: #0f172a;
+  --muted-foreground: #64748b;
+  --background: #f8fafc;
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --input-border: #cbd5e1;
+  --muted: #f1f5f9;
+  --red-500: #ef4444;
+  --red-50: #fef2f2;
+}
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--background);
+  color: var(--foreground);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* Header - matches TaxGeniusPro */
+.header {
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--card);
+}
+.header-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo-img { height: 40px; width: auto; }
+.trust-badges {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--muted-foreground);
+}
+
+/* Hero Section - matches TaxGeniusPro exactly */
+.hero {
+  position: relative;
+  padding: 32px 16px 48px;
+  text-align: center;
+  overflow: hidden;
+  background: var(--background);
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05), transparent);
+  z-index: 0;
+}
+.hero-glow {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 384px;
+  height: 384px;
+  background: rgba(34, 197, 94, 0.2);
+  border-radius: 50%;
+  filter: blur(100px);
+  z-index: 0;
+  animation: pulse 4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Promo Badge - green with lightning icons */
+.promo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--green-500);
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  margin-bottom: 24px;
+  box-shadow: 0 10px 15px -3px rgba(34, 197, 94, 0.3);
+}
+.promo-badge svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Main headline */
+.hero-headline {
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--foreground);
+  margin-bottom: 8px;
+  line-height: 1.1;
+}
+@media (min-width: 640px) {
+  .hero-headline { font-size: 60px; }
+}
+@media (min-width: 1024px) {
+  .hero-headline { font-size: 96px; }
+}
+
+/* Amount with badge */
+.hero-amount-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 24px;
+}
+.hero-amount {
+  font-size: 72px;
+  font-weight: 900;
+  color: var(--green-500);
+  line-height: 1;
+}
+@media (min-width: 640px) {
+  .hero-amount { font-size: 96px; }
+}
+@media (min-width: 1024px) {
+  .hero-amount { font-size: 192px; }
+}
+.advance-badge {
+  position: absolute;
+  top: -8px;
+  right: -16px;
+  background: var(--yellow-400);
+  color: var(--yellow-900);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 9999px;
+  transform: rotate(12deg);
+}
+@media (min-width: 640px) {
+  .advance-badge {
+    font-size: 14px;
+    right: -32px;
+  }
+}
+
+/* Features text */
+.hero-features-text {
+  font-size: 18px;
+  color: var(--muted-foreground);
+  margin-bottom: 24px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (min-width: 640px) {
+  .hero-features-text { font-size: 24px; }
+}
+.hero-features-text .highlight {
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+/* Preparer Card - matches TaxGeniusPro */
+.preparer-card {
+  background: var(--card);
+  border: 2px solid rgba(34, 197, 94, 0.3);
+  border-radius: 16px;
+  padding: 16px 20px;
+  max-width: 420px;
+  margin: 0 auto 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+.preparer-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted-foreground);
+  text-align: center;
+  margin-bottom: 12px;
+}
+.preparer-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(34, 197, 94, 0.3);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+@media (min-width: 640px) {
+  .preparer-avatar {
+    width: 96px;
+    height: 96px;
+  }
+}
+.preparer-details {
+  flex: 1;
+  text-align: left;
+}
+.preparer-name {
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--foreground);
+  margin-bottom: 2px;
+}
+@media (min-width: 640px) {
+  .preparer-name { font-size: 24px; }
+}
+.preparer-title {
+  font-size: 12px;
+  color: var(--muted-foreground);
+  margin-bottom: 8px;
+}
+.preparer-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--green-500);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 6px -1px rgba(34, 197, 94, 0.3);
+  transition: box-shadow 0.2s;
+}
+.preparer-phone:hover {
+  box-shadow: 0 10px 15px -3px rgba(34, 197, 94, 0.4);
+}
+.preparer-phone svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Form Section - gray background like TaxGeniusPro */
+.form-section {
+  padding: 32px 16px 48px;
+  background: rgba(0, 0, 0, 0.03);
+}
+.form-container {
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+/* Toggle Buttons - matches TaxGeniusPro */
+.toggle-container {
+  display: flex;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  padding: 4px;
+  margin-bottom: 24px;
+}
+.toggle-btn {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+.toggle-btn:hover { color: var(--foreground); }
+.toggle-btn.active {
+  background: var(--green-500);
+  color: white;
+  box-shadow: 0 4px 6px -1px rgba(34, 197, 94, 0.3);
+}
+
+/* Form Card - white with green header */
+.form-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+.form-card-header {
+  background: linear-gradient(to right, #22c55e, #16a34a);
+  padding: 16px;
+  text-align: center;
+}
+.form-card-header h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 4px;
+}
+.form-card-header p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+}
+.form-card-body {
+  padding: 24px;
+}
+
+/* Progress Bar - only for full intake */
+.progress-container {
+  padding: 16px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  display: none;
+}
+.progress-container.show { display: block; }
+.progress-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.progress-bar {
+  height: 8px;
+  background: var(--muted);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--green-500);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+  width: 0%;
+}
+.progress-text {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--muted-foreground);
+  margin-top: 8px;
+}
+
+/* Form Steps */
+.form-step {
+  display: none;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+.form-step.active { display: block; }
+.step-header {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.step-header h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.step-header p {
+  font-size: 14px;
+  color: var(--muted-foreground);
+}
+
+/* Form Elements */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 500px) {
+  .form-row { grid-template-columns: 1fr; }
+}
+.form-group {
+  margin-bottom: 16px;
+}
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--foreground);
+  margin-bottom: 4px;
+}
+.form-group label .required {
+  color: var(--red-500);
+}
+.form-group input,
+.form-group select {
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  font-size: 16px;
+  font-family: inherit;
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  background: var(--card);
+  color: var(--foreground);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--green-500);
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+}
+.form-group input::placeholder { color: #94a3b8; }
+.form-group .helper-text {
+  font-size: 12px;
+  color: var(--muted-foreground);
+  margin-top: 4px;
+}
+
+/* Radio/Checkbox Groups */
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+.radio-option {
+  flex: 1;
+  min-width: 120px;
+}
+.radio-option input { display: none; }
+.radio-option label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+  text-align: center;
+}
+.radio-option input:checked + label {
+  border-color: var(--green-500);
+  background: rgba(34, 197, 94, 0.1);
+  color: var(--green-600);
+}
+.radio-option label:hover {
+  border-color: var(--green-500);
+}
+
+/* File Upload */
+.file-upload-area {
+  border: 2px dashed var(--input-border);
+  border-radius: 12px;
+  padding: 32px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+.file-upload-area:hover,
+.file-upload-area.dragover {
+  border-color: var(--green-500);
+  background: rgba(34, 197, 94, 0.05);
+}
+.file-upload-area.has-file {
+  border-color: var(--green-500);
+  background: rgba(34, 197, 94, 0.05);
+}
+.file-upload-area input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.file-upload-area .upload-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 12px;
+  color: var(--muted-foreground);
+}
+.file-upload-area .upload-text {
+  font-size: 14px;
+  color: var(--muted-foreground);
+  margin-bottom: 8px;
+}
+.file-upload-area .upload-hint {
+  font-size: 12px;
+  color: var(--muted-foreground);
+}
+.file-preview-container {
+  display: none;
+  margin-top: 16px;
+}
+.file-preview-container.show { display: block; }
+.file-preview-img {
+  max-width: 200px;
+  max-height: 150px;
+  border-radius: 8px;
+  margin: 0 auto;
+  display: block;
+}
+.file-name-display {
+  font-size: 14px;
+  color: var(--green-600);
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+/* Buttons */
+.btn-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+.btn {
+  flex: 1;
+  height: 48px;
+  padding: 0 24px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: inherit;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn-primary {
+  background: var(--green-500);
+  color: white;
+}
+.btn-primary:hover:not(:disabled) {
+  background: var(--green-600);
+}
+.btn-secondary {
+  background: var(--muted);
+  color: var(--foreground);
+}
+.btn-secondary:hover:not(:disabled) {
+  background: var(--border);
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.btn svg { width: 20px; height: 20px; }
+
+/* Full Width Button */
+.btn-full {
+  width: 100%;
+  height: 48px;
+}
+
+/* Error Message */
+.error-message {
+  background: var(--red-50);
+  border: 1px solid #fecaca;
+  color: var(--red-500);
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 16px;
+  display: none;
+}
+
+/* Checkbox */
+.checkbox-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.checkbox-group input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  cursor: pointer;
+  accent-color: var(--green-500);
+}
+.checkbox-group label {
+  font-size: 13px;
+  color: var(--muted-foreground);
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+/* Secure Badge */
+.secure-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--muted-foreground);
+  margin-top: 16px;
+}
+.secure-badge svg { width: 16px; height: 16px; }
+
+/* Footer */
+.footer {
+  padding: 16px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  background: var(--card);
+}
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  font-size: 14px;
+  color: var(--muted-foreground);
+}
+.footer-links a {
+  color: var(--muted-foreground);
+  text-decoration: none;
+}
+.footer-links a:hover {
+  color: var(--green-500);
+  text-decoration: underline;
+}
+
+/* Loading Spinner */
+.spinner {
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Hide/Show Forms */
+#advanceFormContainer { display: block; }
+#fullIntakeFormContainer { display: none; }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <img src="https://taxgeniuspro.tax/images/logo-light-theme.png" alt="Tax Genius Pro" class="logo-img">
+      <div class="trust-badges">
+        <span>IRS Authorized</span>
+        <span>•</span>
+        <span>BBB A+</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Progress Bar (only for full intake form) -->
+  <div class="progress-container" id="progressContainer">
+    <div class="progress-inner">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-text">
+        <span id="progressPercent">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section - matches TaxGeniusPro -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <!-- Promo Badge with lightning icons -->
+      <div class="promo-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>
+        </svg>
+        LIMITED TIME - PRESEASON 2026
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>
+        </svg>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="hero-headline">Get Up To</h1>
+
+      <!-- Amount with TAX ADVANCE badge -->
+      <div class="hero-amount-wrapper">
+        <span class="hero-amount">$7,000</span>
+        <span class="advance-badge">TAX ADVANCE*</span>
+      </div>
+
+      <!-- Features text -->
+      <p class="hero-features-text">
+        Available starting <span class="highlight">January 2</span> • Fast approval* • File in-person or remotely
+      </p>
+
+      <!-- Preparer Card -->
+      <p class="preparer-label">Contact Us Today</p>
+      <div class="preparer-card">
+        <img id="preparerAvatar" src="https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_ow.jpg" alt="Tax Preparer" class="preparer-avatar">
+        <div class="preparer-details">
+          <p class="preparer-name" id="preparerName">Tax Genius Pro</p>
+          <p class="preparer-title" id="preparerTitle">Professional Tax Services</p>
+          <a href="tel:14046271015" class="preparer-phone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            1 (404) 627-1015
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form Section -->
+  <section class="form-section">
+    <div class="form-container">
+      <!-- Toggle Buttons -->
+      <div class="toggle-container">
+        <button type="button" class="toggle-btn active" id="advanceBtn">I want an advance</button>
+        <button type="button" class="toggle-btn" id="fileBtn">Just file my taxes</button>
+      </div>
+
+      <!-- ===================== -->
+      <!-- SIMPLE ADVANCE FORM -->
+      <!-- ===================== -->
+      <div id="advanceFormContainer">
+        <div class="form-card">
+          <div class="form-card-header">
+            <h2>Get Your Cash Advance</h2>
+            <p>Complete your intake to get started</p>
+          </div>
+          <div class="form-card-body">
+            <form id="advanceForm">
+              <input type="hidden" id="advRefCode" name="refCode" value="">
+              <input type="hidden" name="wantsAdvance" value="true">
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="advFirstName">First Name *</label>
+                  <input type="text" id="advFirstName" name="firstName" required maxlength="50" placeholder="John" autocomplete="given-name">
+                </div>
+                <div class="form-group">
+                  <label for="advLastName">Last Name *</label>
+                  <input type="text" id="advLastName" name="lastName" required maxlength="50" placeholder="Smith" autocomplete="family-name">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="advPhone">Phone Number *</label>
+                <input type="tel" id="advPhone" name="phone" required placeholder="(555) 123-4567" autocomplete="tel">
+              </div>
+
+              <div class="form-group">
+                <label for="advEmail">Email</label>
+                <input type="email" id="advEmail" name="email" placeholder="john@email.com" autocomplete="email">
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="advZipCode">Zip Code *</label>
+                  <input type="text" id="advZipCode" name="zipCode" required placeholder="30301" maxlength="5" pattern="[0-9]{5}" autocomplete="postal-code">
+                </div>
+                <div class="form-group">
+                  <label for="advFilingPref">Filing Preference</label>
+                  <select id="advFilingPref" name="preferredFiling">
+                    <option value="remote">Remote</option>
+                    <option value="in-person">In-Person</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="checkbox-group">
+                <input type="checkbox" id="advConsent" name="consent" required>
+                <label for="advConsent">
+                  I agree to be contacted by Tax Genius Pro via phone, text, or email regarding my tax inquiry.
+                </label>
+              </div>
+
+              <div id="advErrorMessage" class="error-message"></div>
+
+              <button type="submit" id="advSubmitBtn" class="btn btn-primary btn-full">
+                <span id="advSubmitText">CHECK MY ELIGIBILITY</span>
+                <span id="advSubmitLoading" style="display: none;">
+                  <svg class="spinner" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="31.4 31.4"/></svg>
+                  Submitting...
+                </span>
+              </button>
+
+              <div class="secure-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+                256-bit SSL Encrypted • Your data is secure
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================== -->
+      <!-- FULL 6-STEP INTAKE FORM -->
+      <!-- ===================== -->
+      <div id="fullIntakeFormContainer">
+        <form id="intakeForm">
+          <input type="hidden" id="refCode" name="refCode" value="">
+          <input type="hidden" id="wantsAdvance" name="wantsAdvance" value="false">
+
+          <!-- STEP 1: Start Your Tax Filing (Simple like advance form) -->
+          <div class="form-step active" id="step1">
+            <div class="form-card">
+              <div class="form-card-header">
+                <h2>Start Your Tax Filing</h2>
+                <p>Complete your intake to get started</p>
+              </div>
+              <div class="form-card-body">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="firstName">First Name <span class="required">*</span></label>
+                    <input type="text" id="firstName" name="firstName" required maxlength="50" placeholder="John" autocomplete="given-name">
+                  </div>
+                  <div class="form-group">
+                    <label for="lastName">Last Name <span class="required">*</span></label>
+                    <input type="text" id="lastName" name="lastName" required maxlength="50" placeholder="Smith" autocomplete="family-name">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="phone">Phone Number <span class="required">*</span></label>
+                  <input type="tel" id="phone" name="phone" required placeholder="(555) 123-4567" autocomplete="tel">
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" placeholder="john@email.com" autocomplete="email">
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="zipCode">Zip Code <span class="required">*</span></label>
+                    <input type="text" id="zipCode" name="zipCode" required placeholder="30301" maxlength="5" pattern="[0-9]{5}" autocomplete="postal-code">
+                  </div>
+                  <div class="form-group">
+                    <label for="preferredFiling">Filing Preference</label>
+                    <select id="preferredFiling" name="preferredFiling">
+                      <option value="remote">Remote</option>
+                      <option value="in-person">In-Person</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="checkbox-group">
+                  <input type="checkbox" id="consent" name="consent" required>
+                  <label for="consent">
+                    I agree to be contacted by Tax Genius Pro via phone, text, or email regarding my tax inquiry.
+                  </label>
+                </div>
+
+                <button type="button" class="btn btn-primary btn-full" onclick="nextStep()">
+                  START MY TAX FILING
+                </button>
+
+                <div class="secure-badge">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                  </svg>
+                  Secure & Confidential
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 2: Personal Details (DOB, SSN) -->
+          <div class="form-step" id="step2">
+            <div class="step-header">
+              <h2>Personal Details</h2>
+              <p>Enter your legal information as it appears on your ID</p>
+            </div>
+
+            <div class="form-group">
+              <label for="middleName">Middle Name</label>
+              <input type="text" id="middleName" name="middleName" maxlength="50" placeholder="Michael" autocomplete="additional-name">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="dob">Date of Birth <span class="required">*</span></label>
+                <input type="date" id="dob" name="dob" required>
+              </div>
+              <div class="form-group">
+                <label for="ssn">Social Security # <span class="required">*</span></label>
+                <input type="text" id="ssn" name="ssn" required placeholder="XXX-XX-XXXX" maxlength="11" autocomplete="off">
+                <p class="helper-text">Format: 123-45-6789</p>
+              </div>
+            </div>
+
+            <div class="btn-row">
+              <button type="button" class="btn btn-secondary" onclick="prevStep()">Back</button>
+              <button type="button" class="btn btn-primary" onclick="nextStep()">
+                Continue
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 3: Address -->
+          <div class="form-step" id="step3">
+            <div class="step-header">
+              <h2>Your Address</h2>
+              <p>Where do you live?</p>
+            </div>
+
+            <div class="form-group">
+              <label for="address1">Street Address <span class="required">*</span></label>
+              <input type="text" id="address1" name="address1" required placeholder="123 Main Street" autocomplete="address-line1">
+            </div>
+
+            <div class="form-group">
+              <label for="address2">Apt/Suite/Unit</label>
+              <input type="text" id="address2" name="address2" placeholder="Apt 4B" autocomplete="address-line2">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="city">City <span class="required">*</span></label>
+                <input type="text" id="city" name="city" required placeholder="Atlanta" autocomplete="address-level2">
+              </div>
+              <div class="form-group">
+                <label for="state">State <span class="required">*</span></label>
+                <select id="state" name="state" required autocomplete="address-level1">
+                  <option value="">Select State</option>
+                  <option value="AL">Alabama</option><option value="AK">Alaska</option><option value="AZ">Arizona</option>
+                  <option value="AR">Arkansas</option><option value="CA">California</option><option value="CO">Colorado</option>
+                  <option value="CT">Connecticut</option><option value="DE">Delaware</option><option value="FL">Florida</option>
+                  <option value="GA" selected>Georgia</option><option value="HI">Hawaii</option><option value="ID">Idaho</option>
+                  <option value="IL">Illinois</option><option value="IN">Indiana</option><option value="IA">Iowa</option>
+                  <option value="KS">Kansas</option><option value="KY">Kentucky</option><option value="LA">Louisiana</option>
+                  <option value="ME">Maine</option><option value="MD">Maryland</option><option value="MA">Massachusetts</option>
+                  <option value="MI">Michigan</option><option value="MN">Minnesota</option><option value="MS">Mississippi</option>
+                  <option value="MO">Missouri</option><option value="MT">Montana</option><option value="NE">Nebraska</option>
+                  <option value="NV">Nevada</option><option value="NH">New Hampshire</option><option value="NJ">New Jersey</option>
+                  <option value="NM">New Mexico</option><option value="NY">New York</option><option value="NC">North Carolina</option>
+                  <option value="ND">North Dakota</option><option value="OH">Ohio</option><option value="OK">Oklahoma</option>
+                  <option value="OR">Oregon</option><option value="PA">Pennsylvania</option><option value="RI">Rhode Island</option>
+                  <option value="SC">South Carolina</option><option value="SD">South Dakota</option><option value="TN">Tennessee</option>
+                  <option value="TX">Texas</option><option value="UT">Utah</option><option value="VT">Vermont</option>
+                  <option value="VA">Virginia</option><option value="WA">Washington</option><option value="WV">West Virginia</option>
+                  <option value="WI">Wisconsin</option><option value="WY">Wyoming</option><option value="DC">Washington DC</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="btn-row">
+              <button type="button" class="btn btn-secondary" onclick="prevStep()">Back</button>
+              <button type="button" class="btn btn-primary" onclick="nextStep()">
+                Continue
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 4: Tax Info -->
+          <div class="form-step" id="step4">
+            <div class="step-header">
+              <h2>Tax Information</h2>
+              <p>Tell us about your filing status</p>
+            </div>
+
+            <div class="form-group">
+              <label>Filing Status <span class="required">*</span></label>
+              <div class="radio-group">
+                <div class="radio-option">
+                  <input type="radio" id="single" name="filingStatus" value="single" required>
+                  <label for="single">Single</label>
+                </div>
+                <div class="radio-option">
+                  <input type="radio" id="married_joint" name="filingStatus" value="married_joint">
+                  <label for="married_joint">Married Filing Jointly</label>
+                </div>
+                <div class="radio-option">
+                  <input type="radio" id="married_separate" name="filingStatus" value="married_separate">
+                  <label for="married_separate">Married Filing Separately</label>
+                </div>
+                <div class="radio-option">
+                  <input type="radio" id="head_household" name="filingStatus" value="head_household">
+                  <label for="head_household">Head of Household</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Employment Type <span class="required">*</span></label>
+              <div class="radio-group">
+                <div class="radio-option">
+                  <input type="radio" id="w2" name="employmentType" value="W2" required>
+                  <label for="w2">W-2 Employee</label>
+                </div>
+                <div class="radio-option">
+                  <input type="radio" id="1099" name="employmentType" value="1099">
+                  <label for="1099">1099 Self-Employed</label>
+                </div>
+                <div class="radio-option">
+                  <input type="radio" id="both" name="employmentType" value="Both">
+                  <label for="both">Both W-2 & 1099</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="occupation">Occupation <span class="required">*</span></label>
+              <input type="text" id="occupation" name="occupation" required placeholder="e.g. Nurse, Teacher, Driver">
+            </div>
+
+            <div class="form-group">
+              <label>Do you have dependents?</label>
+              <div class="radio-group">
+                <div class="radio-option">
+                  <input type="radio" id="deps_yes" name="hasDependents" value="yes">
+                  <label for="deps_yes">Yes</label>
+                </div>
+                <div class="radio-option">
+                  <input type="radio" id="deps_no" name="hasDependents" value="no" checked>
+                  <label for="deps_no">No</label>
+                </div>
+              </div>
+            </div>
+
+            <div id="dependentsSection" style="display: none;">
+              <div class="form-group">
+                <label for="numDependents">Number of Dependents</label>
+                <select id="numDependents" name="numDependents">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5+">5 or more</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="btn-row">
+              <button type="button" class="btn btn-secondary" onclick="prevStep()">Back</button>
+              <button type="button" class="btn btn-primary" onclick="nextStep()">
+                Continue
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 5: Documents -->
+          <div class="form-step" id="step5">
+            <div class="step-header">
+              <h2>Upload Documents</h2>
+              <p>Please upload a photo of your ID and any tax documents</p>
+            </div>
+
+            <div class="form-group">
+              <label>Driver's License or State ID <span class="required">*</span></label>
+              <div class="file-upload-area" id="idUploadArea">
+                <input type="file" id="idDocument" name="idDocument" accept="image/*,.pdf" required>
+                <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/>
+                  <path d="M12 12v9"/><path d="m16 16-4-4-4 4"/>
+                </svg>
+                <p class="upload-text">Click or drag to upload your ID</p>
+                <p class="upload-hint">JPG, PNG, or PDF up to 10MB</p>
+                <div class="file-preview-container" id="idPreviewContainer">
+                  <img id="idPreview" class="file-preview-img" alt="ID Preview">
+                  <p id="idFileName" class="file-name-display"></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="licenseNumber">License/ID Number <span class="required">*</span></label>
+                <input type="text" id="licenseNumber" name="licenseNumber" required placeholder="Enter ID number">
+              </div>
+              <div class="form-group">
+                <label for="licenseExpiration">Expiration Date <span class="required">*</span></label>
+                <input type="date" id="licenseExpiration" name="licenseExpiration" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>W-2 or Other Tax Documents (Optional)</label>
+              <div class="file-upload-area" id="taxDocUploadArea">
+                <input type="file" id="taxDocument" name="taxDocument" accept="image/*,.pdf" multiple>
+                <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                  <polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/>
+                </svg>
+                <p class="upload-text">Click or drag to upload tax documents</p>
+                <p class="upload-hint">W-2, 1099, or other forms</p>
+                <div class="file-preview-container" id="taxDocPreviewContainer">
+                  <p id="taxDocFileName" class="file-name-display"></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="btn-row">
+              <button type="button" class="btn btn-secondary" onclick="prevStep()">Back</button>
+              <button type="button" class="btn btn-primary" onclick="nextStep()">
+                Continue
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 6: Review & Submit -->
+          <div class="form-step" id="step6">
+            <div class="step-header">
+              <h2>Review & Submit</h2>
+              <p>Please review your information before submitting</p>
+            </div>
+
+            <div id="summaryContent" style="background: var(--muted); padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+            </div>
+
+            <div class="form-group">
+              <label>Preferred Filing Method</label>
+              <div class="radio-group">
+                <div class="radio-option">
+                  <input type="radio" id="remote" name="preferredFiling" value="remote" checked>
+                  <label for="remote">Remote / Virtual</label>
+                </div>
+                <div class="radio-option">
+                  <input type="radio" id="inperson" name="preferredFiling" value="in-person">
+                  <label for="inperson">In-Person</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="checkbox-group">
+              <input type="checkbox" id="consent" name="consent" required>
+              <label for="consent">
+                I certify that the information provided is accurate and I agree to be contacted regarding my tax inquiry.
+              </label>
+            </div>
+
+            <div id="errorMessage" class="error-message"></div>
+
+            <div class="btn-row">
+              <button type="button" class="btn btn-secondary" onclick="prevStep()">Back</button>
+              <button type="submit" id="submitBtn" class="btn btn-primary">
+                <span id="submitText">Submit Intake Form</span>
+                <span id="submitLoading" style="display: none;">
+                  <svg class="spinner" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="31.4 31.4"/></svg>
+                  Submitting...
+                </span>
+              </button>
+            </div>
+
+            <div class="secure-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              256-bit SSL Encrypted • Your data is secure
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="https://taxgeniuspro.tax/en/privacy-policy">Privacy Policy</a>
+      <span>|</span>
+      <a href="https://taxgeniuspro.tax/en/terms">Terms of Service</a>
+      <span>|</span>
+      <span>© 2025 Tax Genius Pro</span>
+    </div>
+  </footer>
+
+  <script>
+    // =====================
+    // TOGGLE BETWEEN FORMS
+    // =====================
+    const advanceBtn = document.getElementById('advanceBtn');
+    const fileBtn = document.getElementById('fileBtn');
+    const advanceFormContainer = document.getElementById('advanceFormContainer');
+    const fullIntakeFormContainer = document.getElementById('fullIntakeFormContainer');
+    const progressContainer = document.getElementById('progressContainer');
+
+    advanceBtn.addEventListener('click', () => {
+      advanceBtn.classList.add('active');
+      fileBtn.classList.remove('active');
+      advanceFormContainer.style.display = 'block';
+      fullIntakeFormContainer.style.display = 'none';
+      progressContainer.classList.remove('show');
+    });
+
+    fileBtn.addEventListener('click', () => {
+      fileBtn.classList.add('active');
+      advanceBtn.classList.remove('active');
+      fullIntakeFormContainer.style.display = 'block';
+      advanceFormContainer.style.display = 'none';
+      progressContainer.classList.add('show');
+      updateProgress();
+    });
+
+    // =====================
+    // REF CODE & PREPARER
+    // =====================
+    const urlParams = new URLSearchParams(window.location.search);
+    const refCode = urlParams.get('ref') || 'ow';
+    document.getElementById('refCode').value = refCode;
+    document.getElementById('advRefCode').value = refCode;
+
+    async function loadPreparer() {
+      try {
+        const response = await fetch(`/api/preparer/by-code?code=${encodeURIComponent(refCode)}`);
+        const data = await response.json();
+        if (data.success && data.preparer) {
+          const p = data.preparer;
+          document.getElementById('preparerName').textContent = p.fullName;
+          document.getElementById('preparerTitle').textContent = p.title;
+          document.getElementById('preparerAvatar').src = p.avatarUrl;
+        }
+      } catch (error) {
+        console.log('Using default preparer');
+      }
+    }
+    loadPreparer();
+
+    // =====================
+    // FULL INTAKE FORM LOGIC
+    // =====================
+    let currentStep = 1;
+    const totalSteps = 6;
+
+    function updateProgress() {
+      const percent = Math.round((currentStep / totalSteps) * 100);
+      document.getElementById('progressFill').style.width = percent + '%';
+      document.getElementById('progressPercent').textContent = percent + '%';
+    }
+
+    function showStep(step) {
+      document.querySelectorAll('.form-step').forEach((el, i) => {
+        el.classList.toggle('active', i + 1 === step);
+      });
+      currentStep = step;
+      updateProgress();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (step === 6) buildSummary();
+    }
+
+    function nextStep() {
+      if (validateStep(currentStep) && currentStep < totalSteps) showStep(currentStep + 1);
+    }
+
+    function prevStep() {
+      if (currentStep > 1) showStep(currentStep - 1);
+    }
+
+    function validateStep(step) {
+      const stepEl = document.getElementById('step' + step);
+      const inputs = stepEl.querySelectorAll('input[required], select[required]');
+      let valid = true;
+      inputs.forEach(input => {
+        if (input.type === 'radio') {
+          const checked = stepEl.querySelector(`input[name="${input.name}"]:checked`);
+          if (!checked) { valid = false; highlightRadioGroup(input.name); }
+        } else if (!input.value.trim()) {
+          valid = false;
+          input.style.borderColor = 'var(--red-500)';
+          setTimeout(() => input.style.borderColor = '', 2000);
+        }
+      });
+      if (!valid) alert('Please fill in all required fields.');
+      return valid;
+    }
+
+    function highlightRadioGroup(name) {
+      document.querySelectorAll(`input[name="${name}"] + label`).forEach(label => {
+        label.style.borderColor = 'var(--red-500)';
+        setTimeout(() => label.style.borderColor = '', 2000);
+      });
+    }
+
+    // Phone formatting
+    ['phone', 'advPhone'].forEach(id => {
+      document.getElementById(id).addEventListener('input', function(e) {
+        let v = e.target.value.replace(/\D/g, '');
+        if (v.length >= 6) v = `(${v.slice(0,3)}) ${v.slice(3,6)}-${v.slice(6,10)}`;
+        else if (v.length >= 3) v = `(${v.slice(0,3)}) ${v.slice(3)}`;
+        e.target.value = v;
+      });
+    });
+
+    // SSN formatting
+    document.getElementById('ssn').addEventListener('input', function(e) {
+      let v = e.target.value.replace(/\D/g, '');
+      if (v.length >= 5) v = `${v.slice(0,3)}-${v.slice(3,5)}-${v.slice(5,9)}`;
+      else if (v.length >= 3) v = `${v.slice(0,3)}-${v.slice(3)}`;
+      e.target.value = v;
+    });
+
+    // Dependents toggle
+    document.querySelectorAll('input[name="hasDependents"]').forEach(r => {
+      r.addEventListener('change', function() {
+        document.getElementById('dependentsSection').style.display = this.value === 'yes' ? 'block' : 'none';
+      });
+    });
+
+    // File uploads
+    document.getElementById('idDocument').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        document.getElementById('idUploadArea').classList.add('has-file');
+        document.getElementById('idFileName').textContent = file.name;
+        document.getElementById('idPreviewContainer').classList.add('show');
+        if (file.type.startsWith('image/')) {
+          const reader = new FileReader();
+          reader.onload = e => { document.getElementById('idPreview').src = e.target.result; document.getElementById('idPreview').style.display = 'block'; };
+          reader.readAsDataURL(file);
+        } else { document.getElementById('idPreview').style.display = 'none'; }
+      }
+    });
+
+    document.getElementById('taxDocument').addEventListener('change', function(e) {
+      if (e.target.files.length > 0) {
+        document.getElementById('taxDocUploadArea').classList.add('has-file');
+        document.getElementById('taxDocFileName').textContent = Array.from(e.target.files).map(f => f.name).join(', ');
+        document.getElementById('taxDocPreviewContainer').classList.add('show');
+      }
+    });
+
+    // Drag and drop
+    ['idUploadArea', 'taxDocUploadArea'].forEach(id => {
+      const area = document.getElementById(id);
+      ['dragenter', 'dragover'].forEach(evt => area.addEventListener(evt, e => { e.preventDefault(); area.classList.add('dragover'); }));
+      ['dragleave', 'drop'].forEach(evt => area.addEventListener(evt, e => { e.preventDefault(); area.classList.remove('dragover'); }));
+    });
+
+    // Build summary
+    function buildSummary() {
+      const getValue = id => document.getElementById(id)?.value || '';
+      const getRadio = name => document.querySelector(`input[name="${name}"]:checked`)?.value || '';
+      document.getElementById('summaryContent').innerHTML = `
+        <div style="margin-bottom:16px;"><strong style="color:var(--green-600);">Personal Information</strong>
+        <p style="margin-top:8px;"><strong>Name:</strong> ${getValue('firstName')} ${getValue('middleName')} ${getValue('lastName')}<br>
+        <strong>DOB:</strong> ${getValue('dob')}<br><strong>SSN:</strong> ***-**-${getValue('ssn').slice(-4)}</p></div>
+        <div style="margin-bottom:16px;"><strong style="color:var(--green-600);">Contact</strong>
+        <p style="margin-top:8px;"><strong>Phone:</strong> ${getValue('phone')}<br><strong>Email:</strong> ${getValue('email')}<br>
+        <strong>Address:</strong> ${getValue('address1')} ${getValue('address2')}, ${getValue('city')}, ${getValue('state')} ${getValue('zipCode')}</p></div>
+        <div style="margin-bottom:16px;"><strong style="color:var(--green-600);">Tax Information</strong>
+        <p style="margin-top:8px;"><strong>Filing Status:</strong> ${getRadio('filingStatus').replace('_', ' ')}<br>
+        <strong>Employment:</strong> ${getRadio('employmentType')}<br><strong>Occupation:</strong> ${getValue('occupation')}<br>
+        <strong>Dependents:</strong> ${getRadio('hasDependents') === 'yes' ? getValue('numDependents') : 'None'}</p></div>
+        <div><strong style="color:var(--green-600);">Documents</strong>
+        <p style="margin-top:8px;"><strong>ID #:</strong> ${getValue('licenseNumber')}<br><strong>ID Expiration:</strong> ${getValue('licenseExpiration')}<br>
+        <strong>ID Photo:</strong> ${document.getElementById('idDocument').files[0]?.name || 'Not uploaded'}<br>
+        <strong>Tax Docs:</strong> ${document.getElementById('taxDocument').files.length > 0 ? Array.from(document.getElementById('taxDocument').files).map(f => f.name).join(', ') : 'None'}</p></div>
+      `;
+    }
+
+    // =====================
+    // FORM SUBMISSIONS
+    // =====================
+    document.getElementById('advanceForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('advSubmitBtn');
+      const txt = document.getElementById('advSubmitText');
+      const load = document.getElementById('advSubmitLoading');
+      const err = document.getElementById('advErrorMessage');
+      if (!document.getElementById('advConsent').checked) { err.textContent = 'Please agree to be contacted.'; err.style.display = 'block'; return; }
+      btn.disabled = true; txt.style.display = 'none'; load.style.display = 'inline-flex'; err.style.display = 'none';
+      const fd = new FormData();
+      fd.append('firstName', document.getElementById('advFirstName').value);
+      fd.append('lastName', document.getElementById('advLastName').value);
+      fd.append('phone', document.getElementById('advPhone').value);
+      fd.append('email', document.getElementById('advEmail').value || '');
+      fd.append('zipCode', document.getElementById('advZipCode').value);
+      fd.append('preferredFiling', document.getElementById('advFilingPref').value);
+      fd.append('refCode', document.getElementById('advRefCode').value);
+      fd.append('wantsAdvance', 'true');
+      fd.append('consent', 'true');
+      try {
+        const res = await fetch('/api/leads', { method: 'POST', body: fd });
+        const data = await res.json();
+        if (res.ok && data.success) { window.location.href = '/success.html?ref=' + encodeURIComponent(refCode); }
+        else { err.textContent = data.details?.join(', ') || data.error || 'Submission failed.'; err.style.display = 'block'; }
+      } catch (error) { err.textContent = 'Network error. Please try again.'; err.style.display = 'block'; }
+      finally { btn.disabled = false; txt.style.display = 'inline'; load.style.display = 'none'; }
+    });
+
+    document.getElementById('intakeForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      const txt = document.getElementById('submitText');
+      const load = document.getElementById('submitLoading');
+      const err = document.getElementById('errorMessage');
+      if (!document.getElementById('consent').checked) { err.textContent = 'Please agree to the terms.'; err.style.display = 'block'; return; }
+      btn.disabled = true; txt.style.display = 'none'; load.style.display = 'inline-flex'; err.style.display = 'none';
+      const fd = new FormData();
+      ['firstName', 'middleName', 'lastName', 'dob', 'ssn', 'phone', 'email', 'address1', 'address2', 'city', 'state', 'zipCode', 'occupation', 'licenseNumber', 'licenseExpiration', 'refCode', 'wantsAdvance'].forEach(f => { const el = document.getElementById(f); if (el) fd.append(f, el.value); });
+      fd.append('filingStatus', document.querySelector('input[name="filingStatus"]:checked')?.value || '');
+      fd.append('employmentType', document.querySelector('input[name="employmentType"]:checked')?.value || '');
+      fd.append('hasDependents', document.querySelector('input[name="hasDependents"]:checked')?.value || 'no');
+      fd.append('numDependents', document.getElementById('numDependents')?.value || '0');
+      fd.append('preferredFiling', document.querySelector('input[name="preferredFiling"]:checked')?.value || 'remote');
+      fd.append('consent', 'true');
+      const idFile = document.getElementById('idDocument').files[0];
+      if (idFile) fd.append('idDocument', idFile);
+      const taxFiles = document.getElementById('taxDocument').files;
+      for (let i = 0; i < taxFiles.length; i++) fd.append('taxDocuments', taxFiles[i]);
+      try {
+        const res = await fetch('/api/leads', { method: 'POST', body: fd });
+        const data = await res.json();
+        if (res.ok && data.success) { window.location.href = '/success.html?ref=' + encodeURIComponent(refCode); }
+        else { err.textContent = data.details?.join(', ') || data.error || 'Submission failed.'; err.style.display = 'block'; }
+      } catch (error) { err.textContent = 'Network error. Please try again.'; err.style.display = 'block'; }
+      finally { btn.disabled = false; txt.style.display = 'inline'; load.style.display = 'none'; }
+    });
+
+    updateProgress();
+  </script>
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#22c55e">
+  <title>Thank You - Tax Genius Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --green-500: #22c55e;
+      --green-600: #16a34a;
+      --green-700: #15803d;
+      --green-50: #f0fdf4;
+      --foreground: #0f172a;
+      --muted: #64748b;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 50%, #bbf7d0 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .container {
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+      padding: 48px 32px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+    }
+    .logo {
+      height: 36px;
+      margin-bottom: 32px;
+    }
+
+    /* Checkmark Animation */
+    .checkmark-circle {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--green-500), var(--green-600));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      animation: scaleIn 0.5s ease-out;
+    }
+    @keyframes scaleIn {
+      0% { transform: scale(0); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    .checkmark {
+      width: 40px;
+      height: 40px;
+      stroke: white;
+      stroke-width: 3;
+      fill: none;
+      animation: drawCheck 0.6s ease-out 0.3s forwards;
+      stroke-dasharray: 100;
+      stroke-dashoffset: 100;
+    }
+    @keyframes drawCheck {
+      to { stroke-dashoffset: 0; }
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--green-700);
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    /* Preparer Card */
+    .preparer-section {
+      background: var(--green-50);
+      border: 2px solid rgba(34, 197, 94, 0.3);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .preparer-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--green-600);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .preparer-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--green-500);
+      box-shadow: 0 10px 25px -5px rgba(34, 197, 94, 0.3);
+      margin-bottom: 16px;
+    }
+    .preparer-name {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--foreground);
+      margin-bottom: 4px;
+    }
+    .preparer-title {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .call-message {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--green-700);
+      margin-bottom: 16px;
+    }
+    .call-message svg {
+      width: 24px;
+      height: 24px;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+    .preparer-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--green-500);
+      color: white;
+      padding: 14px 28px;
+      border-radius: 9999px;
+      font-size: 18px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 10px 25px -5px rgba(34, 197, 94, 0.4);
+      transition: all 0.2s;
+    }
+    .preparer-phone:hover {
+      background: var(--green-600);
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px -5px rgba(34, 197, 94, 0.5);
+    }
+    .preparer-phone svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Next Steps */
+    .next-steps {
+      text-align: left;
+      margin-bottom: 24px;
+    }
+    .next-steps h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--foreground);
+      margin-bottom: 12px;
+    }
+    .next-steps ul {
+      list-style: none;
+    }
+    .next-steps li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--muted);
+      padding: 8px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .next-steps li:last-child { border-bottom: none; }
+    .next-steps li svg {
+      width: 20px;
+      height: 20px;
+      color: var(--green-500);
+      flex-shrink: 0;
+    }
+
+    .btn-home {
+      display: inline-block;
+      background: #f1f5f9;
+      color: var(--foreground);
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+    .btn-home:hover {
+      background: #e2e8f0;
+    }
+
+    .footer {
+      margin-top: 32px;
+      font-size: 12px;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://taxgeniuspro.tax/images/logo-light-theme.png" alt="Tax Genius Pro" class="logo">
+
+    <div class="checkmark-circle">
+      <svg class="checkmark" viewBox="0 0 52 52">
+        <polyline points="14 27 22 35 38 17"/>
+      </svg>
+    </div>
+
+    <h1>Thank You!</h1>
+    <p class="subtitle">Your information has been submitted successfully.</p>
+
+    <!-- Preparer Card -->
+    <div class="preparer-section">
+      <p class="preparer-label">Your Tax Preparer</p>
+      <img id="preparerAvatar" src="https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_ow.jpg" alt="Tax Preparer" class="preparer-avatar">
+      <p id="preparerName" class="preparer-name">Tax Genius Pro</p>
+      <p id="preparerTitle" class="preparer-title">Licensed Tax Professional</p>
+
+      <p class="call-message">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        We will call you shortly!
+      </p>
+
+      <a id="preparerPhoneLink" href="tel:14046271015" class="preparer-phone">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        <span id="preparerPhoneText">1 (404) 627-1015</span>
+      </a>
+    </div>
+
+    <!-- Next Steps -->
+    <div class="next-steps">
+      <h3>What Happens Next?</h3>
+      <ul>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          Expect a call within 24-48 hours
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+          </svg>
+          Check your email for confirmation
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+          </svg>
+          Have your tax documents ready
+        </li>
+      </ul>
+    </div>
+
+    <a href="/" class="btn-home">Return to Homepage</a>
+  </div>
+
+  <p class="footer">© 2025 Tax Genius Pro. All rights reserved.</p>
+
+  <script>
+    // Get ref code from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const refCode = urlParams.get('ref') || 'ow';
+
+    // Load preparer info
+    async function loadPreparer() {
+      try {
+        const response = await fetch(`/api/preparer/by-code?code=${encodeURIComponent(refCode)}`);
+        const data = await response.json();
+        if (data.success && data.preparer) {
+          const p = data.preparer;
+          document.getElementById('preparerName').textContent = p.fullName;
+          document.getElementById('preparerTitle').textContent = p.title;
+          document.getElementById('preparerAvatar').src = p.avatarUrl;
+          if (p.phone) {
+            const phoneDigits = p.phone.replace(/\D/g, '');
+            document.getElementById('preparerPhoneLink').href = `tel:1${phoneDigits}`;
+            document.getElementById('preparerPhoneText').textContent = p.phone;
+          }
+        }
+      } catch (error) {
+        console.log('Using default preparer info');
+      }
+    }
+    loadPreparer();
+  </script>
+</body>
+</html>
