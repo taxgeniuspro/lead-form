@@ -7,15 +7,56 @@ function escapeMarkdown(text) {
 }
 
 /**
+ * Fetch with retry and timeout for unreliable network
+ */
+async function fetchWithRetry(url, options, maxRetries = 3, timeout = 30000) {
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeout);
+
+    try {
+      const response = await fetch(url, {
+        ...options,
+        signal: controller.signal
+      });
+      clearTimeout(timeoutId);
+      return response;
+    } catch (error) {
+      clearTimeout(timeoutId);
+      console.log(`Telegram attempt ${attempt}/${maxRetries} failed:`, error.message);
+
+      if (attempt === maxRetries) {
+        throw error;
+      }
+
+      // Wait before retry: 2s, 4s, 8s
+      const delay = Math.pow(2, attempt) * 1000;
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+  }
+}
+
+/**
  * Send comprehensive lead notification to Telegram
- * Tax preparer will receive instant notification via Telegram bot
+ * Sends to BOTH English and Spanish bots for redundancy
  */
 async function sendLeadToTelegram(leadData) {
-  const botToken = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
+  const chatId = process.env.TELEGRAM_CHAT_ID || '7154912264';
 
-  if (!botToken || !chatId) {
-    console.log('Telegram not configured, skipping');
+  // Both bots for redundancy
+  const bots = [
+    {
+      name: 'English',
+      token: process.env.TELEGRAM_BOT_TOKEN || '7904997613:AAFWL7jt240sSn5Vt8ShOHmt7iV8krKb0Jo'
+    },
+    {
+      name: 'Spanish',
+      token: process.env.TELEGRAM_BOT_TOKEN_ES || '7776905155:AAF0FCIGHoAi5e2KVR_AbBizF1SW-1qD-DQ'
+    }
+  ];
+
+  if (!chatId) {
+    console.log('Telegram chat ID not configured, skipping');
     return false;
   }
 
@@ -101,30 +142,45 @@ ${taxDocumentUrls && taxDocumentUrls.length > 0 ? `\n📄 *Tax Docs:* ${taxDocum
 ━━━━━━━━━━━━━━━━━━━━━━
   `.trim();
 
-  try {
-    const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: message,
-        parse_mode: 'Markdown',
-        disable_web_page_preview: true,
-      }),
-    });
+  // Send to all bots in parallel
+  const results = await Promise.allSettled(
+    bots.map(async (bot) => {
+      try {
+        const url = `https://api.telegram.org/bot${bot.token}/sendMessage`;
+        const response = await fetchWithRetry(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: message,
+            parse_mode: 'Markdown',
+            disable_web_page_preview: true,
+          }),
+        });
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(`Telegram API error: ${errorData.description}`);
-    }
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(`${bot.name} bot error: ${errorData.description}`);
+        }
 
-    console.log('Telegram notification sent successfully');
+        console.log(`Telegram ${bot.name} bot: sent successfully`);
+        return { bot: bot.name, success: true };
+      } catch (error) {
+        console.error(`Telegram ${bot.name} bot failed:`, error.message);
+        return { bot: bot.name, success: false, error: error.message };
+      }
+    })
+  );
+
+  // Return true if at least one bot succeeded
+  const successes = results.filter(r => r.status === 'fulfilled' && r.value.success);
+  if (successes.length > 0) {
+    console.log(`Telegram notifications: ${successes.length}/${bots.length} bots succeeded`);
     return true;
-  } catch (error) {
-    console.error('Telegram notification error:', error.message);
-    return false;
   }
+
+  console.error('All Telegram bots failed to send notification');
+  return false;
 }
 
 module.exports = { sendLeadToTelegram };
