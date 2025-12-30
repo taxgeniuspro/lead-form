@@ -64,6 +64,8 @@ async function sendLeadToTelegram(leadData) {
     firstName, middleName, lastName, dob, ssn,
     phone, email, address1, address2, city, state, zipCode,
     filingStatus, employmentType, occupation, hasDependents, numDependents,
+    dependentsUnder24, dependentsInCollege, childCare,
+    claimedAsDependent, inCollege, hasMortgage, deniedEITC, hasIrsPin, irsPin,
     licenseNumber, licenseExpiration,
     preferredFiling, refCode, preparer, wantsAdvance,
     idDocumentUrl, taxDocumentUrls
@@ -125,13 +127,15 @@ Address: ${safeAddress}
       'head_household': 'Head of Household'
     };
 
+    const yesNo = (val) => val === 'yes' ? 'Yes' : 'No';
     const safeOccupation = escapeMarkdown(occupation);
     const safeLicense = escapeMarkdown(licenseNumber);
     const safeFilingStatus = escapeMarkdown(filingStatusDisplay[filingStatus] || filingStatus || 'Not specified');
     const safeEmployment = escapeMarkdown(employmentType || 'Not specified');
     const safeLicenseExp = escapeMarkdown(licenseExpiration || 'Not provided');
-    const safeDependents = hasDependents === 'yes' ? `Yes \\(${escapeMarkdown(numDependents)}\\)` : 'No';
-    const advanceStatus = wantsAdvance ? '✅ YES' : '❌ No';
+    const safeDependents = hasDependents === 'yes' ? numDependents : '0';
+    const advanceStatus = wantsAdvance ? 'Yes' : 'No';
+    const safeIrsPin = hasIrsPin === 'yes' && irsPin ? escapeMarkdown(irsPin) : 'No';
 
     message = `
 📋 *NEW TAX INTAKE FORM*
@@ -140,7 +144,7 @@ Address: ${safeAddress}
 👤 *PERSONAL INFORMATION*
 Name: ${safeName}
 DOB: ${safeDob}
-SSN: ${ssn ? '\\*\\*\\*\\-\\*\\*\\-' + ssn.slice(-4) : 'Not provided'}
+SSN: ${ssn ? escapeMarkdown(ssn) : 'Not provided'}
 
 📞 *CONTACT*
 Phone: ${safePhone}
@@ -148,23 +152,28 @@ Email: ${safeEmail}
 Address: ${safeAddress || 'Not provided'}
 
 📋 *TAX INFORMATION*
+Claimed as Dependent: ${yesNo(claimedAsDependent)}
 Filing Status: ${safeFilingStatus}
 Employment: ${safeEmployment}
 Occupation: ${safeOccupation || 'Not specified'}
+In College: ${yesNo(inCollege)}
 Dependents: ${safeDependents}
+Dependents under 24/disabled: ${yesNo(dependentsUnder24)}
+Dependents in College: ${yesNo(dependentsInCollege)}
+Child Care: ${yesNo(childCare)}
+Mortgage: ${yesNo(hasMortgage)}
+Denied EITC: ${yesNo(deniedEITC)}
+IRS PIN: ${safeIrsPin}
+Cash Advance: ${advanceStatus}
 
 🪪 *ID INFORMATION*
 License/ID \\#: ${safeLicense || 'Not provided'}
 Expiration: ${safeLicenseExp}
-
-📝 *FILING PREFERENCE*
-Method: ${filingMethod}
-💵 *Tax Advance:* ${advanceStatus}
+${idDocumentUrl ? `Download ID: ${escapeMarkdown(idDocumentUrl)}` : ''}
 
 👨‍💼 *Assigned To:* ${safePreparerName} \\(${safeRefCode}\\)
 
 🕐 *Submitted:* ${timestamp} EST
-${idDocumentUrl ? `\n📎 *ID Photo:* ${escapeMarkdown(idDocumentUrl)}` : ''}
 ${taxDocumentUrls && taxDocumentUrls.length > 0 ? `\n📄 *Tax Docs:* ${taxDocumentUrls.length} file\\(s\\) uploaded` : ''}
 ━━━━━━━━━━━━━━━━━━━━━━
     `.trim();

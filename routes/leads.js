@@ -150,6 +150,9 @@ router.post('/', uploadFields, validateLead, async (req, res) => {
     phone, email, address1, address2, city, state, zipCode,
     // Tax info
     filingStatus, employmentType, occupation, hasDependents, numDependents,
+    // Additional tax questions
+    dependentsUnder24, dependentsInCollege, childCare,
+    claimedAsDependent, inCollege, hasMortgage, deniedEITC, hasIrsPin, irsPin,
     // ID info
     licenseNumber, licenseExpiration,
     // Form settings
@@ -215,6 +218,16 @@ router.post('/', uploadFields, validateLead, async (req, res) => {
     occupation: occupation || '',
     hasDependents: hasDependents || 'no',
     numDependents: numDependents || '0',
+    // Additional tax questions
+    dependentsUnder24: dependentsUnder24 || 'no',
+    dependentsInCollege: dependentsInCollege || 'no',
+    childCare: childCare || 'no',
+    claimedAsDependent: claimedAsDependent || 'no',
+    inCollege: inCollege || 'no',
+    hasMortgage: hasMortgage || 'no',
+    deniedEITC: deniedEITC || 'no',
+    hasIrsPin: hasIrsPin || 'no',
+    irsPin: irsPin || '',
     // ID info
     licenseNumber: licenseNumber || '',
     licenseExpiration: licenseExpiration || '',
