@@ -58,6 +58,12 @@ async function sendLeadToTelegram(leadData) {
   const safeLicense = escapeMarkdown(licenseNumber);
   const safePreparerName = escapeMarkdown(preparerName);
   const safeRefCode = escapeMarkdown(refCode || 'ow');
+  const safePhone = escapeMarkdown(phone);
+  const safeDob = escapeMarkdown(dob || 'Not provided');
+  const safeFilingStatus = escapeMarkdown(filingStatusDisplay[filingStatus] || filingStatus || 'Not specified');
+  const safeEmployment = escapeMarkdown(employmentType || 'Not specified');
+  const safeLicenseExp = escapeMarkdown(licenseExpiration || 'Not provided');
+  const safeDependents = hasDependents === 'yes' ? `Yes \\(${escapeMarkdown(numDependents)}\\)` : 'No';
 
   const message = `
 ${wantsAdvance ? '💰 *TAX ADVANCE REQUEST*' : '📋 *NEW TAX INTAKE FORM*'}
@@ -65,23 +71,23 @@ ${wantsAdvance ? '💰 *TAX ADVANCE REQUEST*' : '📋 *NEW TAX INTAKE FORM*'}
 
 👤 *PERSONAL INFORMATION*
 Name: ${safeName}
-DOB: ${dob || 'Not provided'}
-SSN: ${ssn ? '***-**-' + ssn.slice(-4) : 'Not provided'}
+DOB: ${safeDob}
+SSN: ${ssn ? '\\*\\*\\*\\-\\*\\*\\-' + ssn.slice(-4) : 'Not provided'}
 
 📞 *CONTACT*
-Phone: [${phone}](tel:+1${phoneDigits})
+Phone: ${safePhone}
 Email: ${safeEmail}
 Address: ${safeAddress || 'Not provided'}
 
 📋 *TAX INFORMATION*
-Filing Status: ${filingStatusDisplay[filingStatus] || filingStatus || 'Not specified'}
-Employment: ${employmentType || 'Not specified'}
+Filing Status: ${safeFilingStatus}
+Employment: ${safeEmployment}
 Occupation: ${safeOccupation || 'Not specified'}
-Dependents: ${hasDependents === 'yes' ? 'Yes (' + numDependents + ')' : 'No'}
+Dependents: ${safeDependents}
 
 🪪 *ID INFORMATION*
-License/ID #: ${safeLicense || 'Not provided'}
-Expiration: ${licenseExpiration || 'Not provided'}
+License/ID \\#: ${safeLicense || 'Not provided'}
+Expiration: ${safeLicenseExp}
 
 📝 *FILING PREFERENCE*
 Method: ${filingMethod}
@@ -90,10 +96,9 @@ Method: ${filingMethod}
 👨‍💼 *Assigned To:* ${safePreparerName} \\(${safeRefCode}\\)
 
 🕐 *Submitted:* ${timestamp} EST
-${idDocumentUrl ? `\n📎 *ID Photo:* [View Document](${idDocumentUrl})` : ''}
-${taxDocumentUrls && taxDocumentUrls.length > 0 ? `\n📄 *Tax Docs:* ${taxDocumentUrls.length} file(s) uploaded` : ''}
+${idDocumentUrl ? `\n📎 *ID Photo:* ${escapeMarkdown(idDocumentUrl)}` : ''}
+${taxDocumentUrls && taxDocumentUrls.length > 0 ? `\n📄 *Tax Docs:* ${taxDocumentUrls.length} file\\(s\\) uploaded` : ''}
 ━━━━━━━━━━━━━━━━━━━━━━
-_Tap phone number to call_
   `.trim();
 
   try {
