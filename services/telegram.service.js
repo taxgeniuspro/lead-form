@@ -81,33 +81,60 @@ async function sendLeadToTelegram(leadData) {
   const fullName = [firstName, middleName, lastName].filter(Boolean).join(' ');
   const fullAddress = [address1, address2, city, state, zipCode].filter(Boolean).join(', ');
 
-  const filingStatusDisplay = {
-    'single': 'Single',
-    'married_joint': 'Married Filing Jointly',
-    'married_separate': 'Married Filing Separately',
-    'head_household': 'Head of Household'
-  };
-
-  // Format phone for clickable link
-  const phoneDigits = phone.replace(/\D/g, '');
-
   // Escape user-provided data to prevent Markdown parsing errors
   const safeName = escapeMarkdown(fullName);
   const safeEmail = escapeMarkdown(email);
-  const safeAddress = escapeMarkdown(fullAddress);
-  const safeOccupation = escapeMarkdown(occupation);
-  const safeLicense = escapeMarkdown(licenseNumber);
+  const safeAddress = escapeMarkdown(fullAddress || zipCode);
   const safePreparerName = escapeMarkdown(preparerName);
   const safeRefCode = escapeMarkdown(refCode || 'ow');
   const safePhone = escapeMarkdown(phone);
   const safeDob = escapeMarkdown(dob || 'Not provided');
-  const safeFilingStatus = escapeMarkdown(filingStatusDisplay[filingStatus] || filingStatus || 'Not specified');
-  const safeEmployment = escapeMarkdown(employmentType || 'Not specified');
-  const safeLicenseExp = escapeMarkdown(licenseExpiration || 'Not provided');
-  const safeDependents = hasDependents === 'yes' ? `Yes \\(${escapeMarkdown(numDependents)}\\)` : 'No';
 
-  const message = `
-${wantsAdvance ? '💰 *TAX ADVANCE REQUEST*' : '📋 *NEW TAX INTAKE FORM*'}
+  // Check if this is a simple advance form (minimal fields) vs full intake
+  const isSimpleForm = wantsAdvance && !dob && !ssn && !address1;
+
+  let message;
+
+  if (isSimpleForm) {
+    // SIMPLE ADVANCE FORM - minimal info only
+    message = `
+💰 *TAX ADVANCE REQUEST*
+━━━━━━━━━━━━━━━━━━━━━━
+
+👤 *PERSONAL INFORMATION*
+Name: ${safeName}
+DOB: ${safeDob}
+SSN: Not provided
+
+📞 *CONTACT*
+Phone: ${safePhone}
+Email: ${safeEmail}
+Address: ${safeAddress}
+
+👨‍💼 *Assigned To:* ${safePreparerName} \\(${safeRefCode}\\)
+
+🕐 *Submitted:* ${timestamp} EST
+━━━━━━━━━━━━━━━━━━━━━━
+    `.trim();
+  } else {
+    // FULL INTAKE FORM - all fields
+    const filingStatusDisplay = {
+      'single': 'Single',
+      'married_joint': 'Married Filing Jointly',
+      'married_separate': 'Married Filing Separately',
+      'head_household': 'Head of Household'
+    };
+
+    const safeOccupation = escapeMarkdown(occupation);
+    const safeLicense = escapeMarkdown(licenseNumber);
+    const safeFilingStatus = escapeMarkdown(filingStatusDisplay[filingStatus] || filingStatus || 'Not specified');
+    const safeEmployment = escapeMarkdown(employmentType || 'Not specified');
+    const safeLicenseExp = escapeMarkdown(licenseExpiration || 'Not provided');
+    const safeDependents = hasDependents === 'yes' ? `Yes \\(${escapeMarkdown(numDependents)}\\)` : 'No';
+    const advanceStatus = wantsAdvance ? '✅ YES' : '❌ No';
+
+    message = `
+📋 *NEW TAX INTAKE FORM*
 ━━━━━━━━━━━━━━━━━━━━━━
 
 👤 *PERSONAL INFORMATION*
@@ -140,7 +167,8 @@ Method: ${filingMethod}
 ${idDocumentUrl ? `\n📎 *ID Photo:* ${escapeMarkdown(idDocumentUrl)}` : ''}
 ${taxDocumentUrls && taxDocumentUrls.length > 0 ? `\n📄 *Tax Docs:* ${taxDocumentUrls.length} file\\(s\\) uploaded` : ''}
 ━━━━━━━━━━━━━━━━━━━━━━
-  `.trim();
+    `.trim();
+  }
 
   // Send to all bots in parallel
   const results = await Promise.allSettled(
