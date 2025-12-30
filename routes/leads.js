@@ -164,12 +164,14 @@ router.post('/', uploadFields, validateLead, async (req, res) => {
   const protocol = req.protocol;
 
   let idDocumentUrl = null;
+  let idDocumentPath = null;
   let taxDocumentUrls = [];
 
   // ID Document
   if (req.files && req.files['idDocument'] && req.files['idDocument'][0]) {
     const idFile = req.files['idDocument'][0];
     idDocumentUrl = `${protocol}://${host}/uploads/${idFile.filename}`;
+    idDocumentPath = idFile.path;
   }
 
   // Tax Documents (multiple)
@@ -185,6 +187,7 @@ router.post('/', uploadFields, validateLead, async (req, res) => {
   if (req.files && req.files['image'] && req.files['image'][0]) {
     const imgFile = req.files['image'][0];
     idDocumentUrl = idDocumentUrl || `${protocol}://${host}/uploads/${imgFile.filename}`;
+    idDocumentPath = idDocumentPath || imgFile.path;
   }
 
   // Get the preparer for this lead
@@ -238,6 +241,7 @@ router.post('/', uploadFields, validateLead, async (req, res) => {
     wantsAdvance: wantsAdvanceValue,
     // Files
     idDocumentUrl: idDocumentUrl,
+    idDocumentPath: idDocumentPath,
     taxDocumentUrls: taxDocumentUrls,
     // Preparer info for notifications
     preparer: {
