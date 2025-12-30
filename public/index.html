@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#22c55e">
-  <title>Tax Genius Pro - Get Up To $7,000 Tax Advance</title>
+  <title data-i18n="title">Tax Genius Pro - Get Up To $7,000 Tax Advance</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -641,6 +641,36 @@ body {
   text-decoration: underline;
 }
 
+/* Language Toggle */
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--muted);
+  border-radius: 20px;
+  padding: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.lang-btn {
+  padding: 6px 12px;
+  border: none;
+  background: transparent;
+  border-radius: 16px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  transition: all 0.2s;
+}
+.lang-btn.active {
+  background: var(--green-500);
+  color: white;
+}
+.lang-btn:hover:not(.active) {
+  color: var(--foreground);
+}
+
 /* Loading Spinner */
 .spinner {
   width: 20px;
@@ -659,10 +689,16 @@ body {
   <header class="header">
     <div class="header-inner">
       <img src="https://taxgeniuspro.tax/images/logo-light-theme.png" alt="Tax Genius Pro" class="logo-img">
-      <div class="trust-badges">
-        <span>IRS Authorized</span>
-        <span>•</span>
-        <span>BBB A+</span>
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <div class="trust-badges">
+          <span data-i18n="irsAuthorized">IRS Authorized</span>
+          <span>•</span>
+          <span>BBB A+</span>
+        </div>
+        <div class="lang-toggle">
+          <button class="lang-btn active" id="langEN" onclick="setLanguage('en')">EN</button>
+          <button class="lang-btn" id="langES" onclick="setLanguage('es')">ES</button>
+        </div>
       </div>
     </div>
   </header>
@@ -688,28 +724,28 @@ body {
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>
         </svg>
-        LIMITED TIME - PRESEASON 2026
+        <span data-i18n="promoBadge">LIMITED TIME - PRESEASON 2026</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>
         </svg>
       </div>
 
       <!-- Main Headline -->
-      <h1 class="hero-headline">Get Up To</h1>
+      <h1 class="hero-headline" data-i18n="heroHeadline">Get Up To</h1>
 
       <!-- Amount with TAX ADVANCE badge -->
       <div class="hero-amount-wrapper">
         <span class="hero-amount">$7,000</span>
-        <span class="advance-badge">TAX ADVANCE*</span>
+        <span class="advance-badge" data-i18n="advanceBadge">TAX ADVANCE*</span>
       </div>
 
       <!-- Features text -->
-      <p class="hero-features-text">
+      <p class="hero-features-text" data-i18n="heroFeatures">
         Available starting <span class="highlight">January 2</span> • Fast approval* • File in-person or remotely
       </p>
 
       <!-- Preparer Card -->
-      <p class="preparer-label">Contact Us Today</p>
+      <p class="preparer-label" data-i18n="contactUs">Contact Us Today</p>
       <div class="preparer-card">
         <img id="preparerAvatar" src="https://res.cloudinary.com/dhktmiigh/image/upload/v1765487894/taxgeniuspro/preparers/preparer_ow.jpg" alt="Tax Preparer" class="preparer-avatar">
         <div class="preparer-details">
@@ -731,8 +767,8 @@ body {
     <div class="form-container">
       <!-- Toggle Buttons -->
       <div class="toggle-container">
-        <button type="button" class="toggle-btn active" id="advanceBtn">I want an advance</button>
-        <button type="button" class="toggle-btn" id="fileBtn">Just file my taxes</button>
+        <button type="button" class="toggle-btn active" id="advanceBtn" data-i18n="toggleAdvance">I want an advance</button>
+        <button type="button" class="toggle-btn" id="fileBtn" data-i18n="toggleFile">Just file my taxes</button>
       </div>
 
       <!-- ===================== -->
@@ -741,8 +777,8 @@ body {
       <div id="advanceFormContainer">
         <div class="form-card">
           <div class="form-card-header">
-            <h2>Get Your Cash Advance</h2>
-            <p>Complete your intake to get started</p>
+            <h2 data-i18n="advFormTitle">Get Your Cash Advance</h2>
+            <p data-i18n="advFormSubtitle">Complete your intake to get started</p>
           </div>
           <div class="form-card-body">
             <form id="advanceForm">
@@ -751,42 +787,42 @@ body {
 
               <div class="form-row">
                 <div class="form-group">
-                  <label for="advFirstName">First Name *</label>
-                  <input type="text" id="advFirstName" name="firstName" required maxlength="50" placeholder="John" autocomplete="given-name">
+                  <label for="advFirstName" data-i18n="firstName">First Name *</label>
+                  <input type="text" id="advFirstName" name="firstName" required maxlength="50" data-i18n-placeholder="firstNamePlaceholder" placeholder="John" autocomplete="given-name">
                 </div>
                 <div class="form-group">
-                  <label for="advLastName">Last Name *</label>
-                  <input type="text" id="advLastName" name="lastName" required maxlength="50" placeholder="Smith" autocomplete="family-name">
+                  <label for="advLastName" data-i18n="lastName">Last Name *</label>
+                  <input type="text" id="advLastName" name="lastName" required maxlength="50" data-i18n-placeholder="lastNamePlaceholder" placeholder="Smith" autocomplete="family-name">
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="advPhone">Phone Number *</label>
+                <label for="advPhone" data-i18n="phone">Phone Number *</label>
                 <input type="tel" id="advPhone" name="phone" required placeholder="(555) 123-4567" autocomplete="tel">
               </div>
 
               <div class="form-group">
-                <label for="advEmail">Email</label>
+                <label for="advEmail" data-i18n="email">Email</label>
                 <input type="email" id="advEmail" name="email" placeholder="john@email.com" autocomplete="email">
               </div>
 
               <div class="form-row">
                 <div class="form-group">
-                  <label for="advZipCode">Zip Code *</label>
+                  <label for="advZipCode" data-i18n="zipCode">Zip Code *</label>
                   <input type="text" id="advZipCode" name="zipCode" required placeholder="30301" maxlength="5" pattern="[0-9]{5}" autocomplete="postal-code">
                 </div>
                 <div class="form-group">
-                  <label for="advFilingPref">Filing Preference</label>
+                  <label for="advFilingPref" data-i18n="filingPref">Filing Preference</label>
                   <select id="advFilingPref" name="preferredFiling">
-                    <option value="remote">Remote</option>
-                    <option value="in-person">In-Person</option>
+                    <option value="remote" data-i18n="remote">Remote</option>
+                    <option value="in-person" data-i18n="inPerson">In-Person</option>
                   </select>
                 </div>
               </div>
 
               <div class="checkbox-group">
                 <input type="checkbox" id="advConsent" name="consent" required>
-                <label for="advConsent">
+                <label for="advConsent" data-i18n="consentText">
                   I agree to be contacted by Tax Genius Pro via phone, text, or email regarding my tax inquiry.
                 </label>
               </div>
@@ -794,10 +830,10 @@ body {
               <div id="advErrorMessage" class="error-message"></div>
 
               <button type="submit" id="advSubmitBtn" class="btn btn-primary btn-full">
-                <span id="advSubmitText">CHECK MY ELIGIBILITY</span>
+                <span id="advSubmitText" data-i18n="checkEligibility">CHECK MY ELIGIBILITY</span>
                 <span id="advSubmitLoading" style="display: none;">
                   <svg class="spinner" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="31.4 31.4"/></svg>
-                  Submitting...
+                  <span data-i18n="submitting">Submitting...</span>
                 </span>
               </button>
 
@@ -806,7 +842,7 @@ body {
                   <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
                   <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
                 </svg>
-                256-bit SSL Encrypted • Your data is secure
+                <span data-i18n="secureBadge">256-bit SSL Encrypted • Your data is secure</span>
               </div>
             </form>
           </div>
@@ -825,8 +861,8 @@ body {
           <div class="form-step active" id="step1">
             <div class="form-card">
               <div class="form-card-header">
-                <h2>Start Your Tax Filing</h2>
-                <p>Complete your intake to get started</p>
+                <h2 data-i18n="fileFormTitle">Start Your Tax Filing</h2>
+                <p data-i18n="fileFormSubtitle">Complete your intake to get started</p>
               </div>
               <div class="form-card-body">
                 <div class="form-row">
@@ -1312,6 +1348,251 @@ body {
 
   <script>
     // =====================
+    // TRANSLATIONS (EN/ES)
+    // =====================
+    const translations = {
+      en: {
+        title: 'Tax Genius Pro - Get Up To $7,000 Tax Advance',
+        irsAuthorized: 'IRS Authorized',
+        promoBadge: 'LIMITED TIME - PRESEASON 2026',
+        heroHeadline: 'Get Up To',
+        advanceBadge: 'TAX ADVANCE*',
+        heroFeatures: 'Available starting <span class="highlight">January 2</span> • Fast approval* • File in-person or remotely',
+        contactUs: 'Contact Us Today',
+        toggleAdvance: 'I want an advance',
+        toggleFile: 'Just file my taxes',
+        advFormTitle: 'Get Your Cash Advance',
+        advFormSubtitle: 'Complete your intake to get started',
+        fileFormTitle: 'Start Your Tax Filing',
+        fileFormSubtitle: 'Complete your intake to get started',
+        firstName: 'First Name *',
+        lastName: 'Last Name *',
+        firstNamePlaceholder: 'John',
+        lastNamePlaceholder: 'Smith',
+        phone: 'Phone Number *',
+        email: 'Email',
+        zipCode: 'Zip Code *',
+        filingPref: 'Filing Preference',
+        remote: 'Remote',
+        inPerson: 'In-Person',
+        consentText: 'I agree to be contacted by Tax Genius Pro via phone, text, or email regarding my tax inquiry.',
+        checkEligibility: 'CHECK MY ELIGIBILITY',
+        startFiling: 'START MY TAX FILING',
+        submitting: 'Submitting...',
+        secureBadge: '256-bit SSL Encrypted • Your data is secure',
+        secureConfidential: 'Secure & Confidential',
+        // Step headers
+        step2Title: 'Personal Details',
+        step2Subtitle: 'Enter your legal information as it appears on your ID',
+        step3Title: 'Your Address',
+        step3Subtitle: 'Where do you live?',
+        step4Title: 'Tax Information',
+        step4Subtitle: 'Tell us about your filing status',
+        step5Title: 'Upload Documents',
+        step5Subtitle: 'Please upload a photo of your ID and any tax documents',
+        step6Title: 'Review & Submit',
+        step6Subtitle: 'Please review your information before submitting',
+        // Form fields
+        middleName: 'Middle Name',
+        dob: 'Date of Birth *',
+        ssn: 'Social Security # *',
+        ssnFormat: 'Format: 123-45-6789',
+        streetAddress: 'Street Address *',
+        aptSuite: 'Apt/Suite/Unit',
+        city: 'City *',
+        state: 'State *',
+        selectState: 'Select State',
+        filingStatus: 'Filing Status *',
+        single: 'Single',
+        marriedJoint: 'Married Filing Jointly',
+        marriedSeparate: 'Married Filing Separately',
+        headHousehold: 'Head of Household',
+        employmentType: 'Employment Type *',
+        w2Employee: 'W-2 Employee',
+        selfEmployed: '1099 Self-Employed',
+        both: 'Both W-2 & 1099',
+        occupation: 'Occupation *',
+        occupationPlaceholder: 'e.g. Nurse, Teacher, Driver',
+        hasDependents: 'Do you have dependents?',
+        yes: 'Yes',
+        no: 'No',
+        numDependents: 'Number of Dependents',
+        dependentsUnder24: 'Dependents under 24 or disabled?',
+        dependentsInCollege: 'Dependents in College?',
+        childCare: 'Do you pay for Child Care?',
+        claimedAsDependent: 'Will anyone be claiming you as a Dependent?',
+        inCollege: 'Are you currently in College?',
+        hasMortgage: 'Do you have a Mortgage?',
+        deniedEITC: 'Have you ever been Denied EITC (Earned Income Tax Credit)?',
+        hasIrsPin: 'Do you have an IRS PIN?',
+        irsPinNumber: 'IRS PIN Number',
+        irsPinPlaceholder: 'Enter your 6-digit IRS PIN',
+        // Documents
+        idUpload: "Driver's License or State ID *",
+        idUploadText: 'Click or drag to upload your ID',
+        idUploadHint: 'JPG, PNG, or PDF up to 10MB',
+        licenseNumber: 'License/ID Number *',
+        licenseExpiration: 'Expiration Date *',
+        taxDocUpload: 'W-2 or Other Tax Documents (Optional)',
+        taxDocUploadText: 'Click or drag to upload tax documents',
+        taxDocUploadHint: 'W-2, 1099, or other forms',
+        // Buttons
+        back: 'Back',
+        continue: 'Continue',
+        submitIntake: 'Submit Intake Form',
+        // Footer
+        privacyPolicy: 'Privacy Policy',
+        termsOfService: 'Terms of Service'
+      },
+      es: {
+        title: 'Tax Genius Pro - Obtenga Hasta $7,000 de Adelanto',
+        irsAuthorized: 'Autorizado por el IRS',
+        promoBadge: 'TIEMPO LIMITADO - PRETEMPORADA 2026',
+        heroHeadline: 'Obtenga Hasta',
+        advanceBadge: 'ADELANTO DE IMPUESTOS*',
+        heroFeatures: 'Disponible a partir del <span class="highlight">2 de Enero</span> • Aprobación rápida* • Presente en persona o remotamente',
+        contactUs: 'Contáctenos Hoy',
+        toggleAdvance: 'Quiero un adelanto',
+        toggleFile: 'Solo declarar mis impuestos',
+        advFormTitle: 'Obtenga Su Adelanto en Efectivo',
+        advFormSubtitle: 'Complete su información para comenzar',
+        fileFormTitle: 'Comience Su Declaración de Impuestos',
+        fileFormSubtitle: 'Complete su información para comenzar',
+        firstName: 'Nombre *',
+        lastName: 'Apellido *',
+        firstNamePlaceholder: 'Juan',
+        lastNamePlaceholder: 'García',
+        phone: 'Número de Teléfono *',
+        email: 'Correo Electrónico',
+        zipCode: 'Código Postal *',
+        filingPref: 'Preferencia de Presentación',
+        remote: 'Remoto',
+        inPerson: 'En Persona',
+        consentText: 'Acepto ser contactado por Tax Genius Pro por teléfono, mensaje de texto o correo electrónico sobre mi consulta de impuestos.',
+        checkEligibility: 'VERIFICAR MI ELEGIBILIDAD',
+        startFiling: 'INICIAR MI DECLARACIÓN',
+        submitting: 'Enviando...',
+        secureBadge: 'Cifrado SSL de 256 bits • Sus datos están seguros',
+        secureConfidential: 'Seguro y Confidencial',
+        // Step headers
+        step2Title: 'Datos Personales',
+        step2Subtitle: 'Ingrese su información legal como aparece en su identificación',
+        step3Title: 'Su Dirección',
+        step3Subtitle: '¿Dónde vive?',
+        step4Title: 'Información Fiscal',
+        step4Subtitle: 'Cuéntenos sobre su estado de declaración',
+        step5Title: 'Subir Documentos',
+        step5Subtitle: 'Por favor suba una foto de su identificación y documentos fiscales',
+        step6Title: 'Revisar y Enviar',
+        step6Subtitle: 'Por favor revise su información antes de enviar',
+        // Form fields
+        middleName: 'Segundo Nombre',
+        dob: 'Fecha de Nacimiento *',
+        ssn: 'Número de Seguro Social *',
+        ssnFormat: 'Formato: 123-45-6789',
+        streetAddress: 'Dirección *',
+        aptSuite: 'Apto/Suite/Unidad',
+        city: 'Ciudad *',
+        state: 'Estado *',
+        selectState: 'Seleccione Estado',
+        filingStatus: 'Estado de Declaración *',
+        single: 'Soltero/a',
+        marriedJoint: 'Casado/a Declarando Conjuntamente',
+        marriedSeparate: 'Casado/a Declarando por Separado',
+        headHousehold: 'Cabeza de Familia',
+        employmentType: 'Tipo de Empleo *',
+        w2Employee: 'Empleado W-2',
+        selfEmployed: 'Trabajador Independiente 1099',
+        both: 'Ambos W-2 y 1099',
+        occupation: 'Ocupación *',
+        occupationPlaceholder: 'ej. Enfermero/a, Maestro/a, Conductor/a',
+        hasDependents: '¿Tiene dependientes?',
+        yes: 'Sí',
+        no: 'No',
+        numDependents: 'Número de Dependientes',
+        dependentsUnder24: '¿Dependientes menores de 24 años o discapacitados?',
+        dependentsInCollege: '¿Dependientes en la Universidad?',
+        childCare: '¿Paga por Cuidado de Niños?',
+        claimedAsDependent: '¿Alguien lo reclamará como Dependiente?',
+        inCollege: '¿Está actualmente en la Universidad?',
+        hasMortgage: '¿Tiene Hipoteca?',
+        deniedEITC: '¿Le han negado el EITC (Crédito Tributario por Ingreso del Trabajo)?',
+        hasIrsPin: '¿Tiene un PIN del IRS?',
+        irsPinNumber: 'Número de PIN del IRS',
+        irsPinPlaceholder: 'Ingrese su PIN de 6 dígitos del IRS',
+        // Documents
+        idUpload: 'Licencia de Conducir o Identificación Estatal *',
+        idUploadText: 'Haga clic o arrastre para subir su identificación',
+        idUploadHint: 'JPG, PNG o PDF hasta 10MB',
+        licenseNumber: 'Número de Licencia/ID *',
+        licenseExpiration: 'Fecha de Vencimiento *',
+        taxDocUpload: 'W-2 u Otros Documentos Fiscales (Opcional)',
+        taxDocUploadText: 'Haga clic o arrastre para subir documentos fiscales',
+        taxDocUploadHint: 'W-2, 1099 u otros formularios',
+        // Buttons
+        back: 'Atrás',
+        continue: 'Continuar',
+        submitIntake: 'Enviar Formulario',
+        // Footer
+        privacyPolicy: 'Política de Privacidad',
+        termsOfService: 'Términos de Servicio'
+      }
+    };
+
+    let currentLang = 'en';
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+
+      // Update toggle buttons
+      document.getElementById('langEN').classList.toggle('active', lang === 'en');
+      document.getElementById('langES').classList.toggle('active', lang === 'es');
+
+      // Update all elements with data-i18n
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+
+      // Update placeholders
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (translations[lang][key]) {
+          el.placeholder = translations[lang][key];
+        }
+      });
+
+      // Store preference
+      localStorage.setItem('preferredLang', lang);
+
+      // Update URL without reload
+      const url = new URL(window.location);
+      url.searchParams.set('lang', lang);
+      history.replaceState(null, '', url);
+    }
+
+    // Detect language on load
+    function detectLanguage() {
+      // 1. Check URL param
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlLang = urlParams.get('lang');
+      if (urlLang === 'es' || urlLang === 'en') return urlLang;
+
+      // 2. Check localStorage
+      const storedLang = localStorage.getItem('preferredLang');
+      if (storedLang === 'es' || storedLang === 'en') return storedLang;
+
+      // 3. Check browser language
+      const browserLang = navigator.language || navigator.userLanguage;
+      if (browserLang && browserLang.toLowerCase().startsWith('es')) return 'es';
+
+      return 'en';
+    }
+
+    // =====================
     // TOGGLE BETWEEN FORMS
     // =====================
     const advanceBtn = document.getElementById('advanceBtn');
@@ -1569,6 +1850,12 @@ body {
     });
 
     updateProgress();
+
+    // Initialize language on page load
+    const detectedLang = detectLanguage();
+    if (detectedLang !== 'en') {
+      setLanguage(detectedLang);
+    }
   </script>
 </body>
 </html>
