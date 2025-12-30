@@ -682,6 +682,124 @@ body {
 /* Hide/Show Forms */
 #advanceFormContainer { display: block; }
 #fullIntakeFormContainer { display: none; }
+
+/* What Happens Next Section */
+.next-steps-section {
+  padding: 48px 16px;
+  background: var(--card);
+  border-top: 1px solid var(--border);
+}
+.next-steps-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.section-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--foreground);
+  text-align: center;
+  margin-bottom: 32px;
+}
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+@media (max-width: 768px) {
+  .steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .steps-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.step-item {
+  text-align: center;
+  padding: 24px 16px;
+  background: var(--muted);
+  border-radius: 12px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.step-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+.step-number {
+  width: 48px;
+  height: 48px;
+  background: var(--green-500);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0 auto 12px;
+}
+.step-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--foreground);
+  line-height: 1.4;
+}
+
+/* FAQ Section */
+.faq-section {
+  padding: 48px 16px;
+  background: var(--background);
+}
+.faq-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+@media (max-width: 640px) {
+  .faq-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.faq-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+}
+.faq-question {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--foreground);
+  margin-bottom: 8px;
+}
+.faq-answer {
+  font-size: 14px;
+  color: var(--muted-foreground);
+  line-height: 1.6;
+}
+
+/* Footer Updates */
+.footer {
+  padding: 24px 16px;
+  border-top: 1px solid var(--border);
+  background: var(--card);
+}
+.footer-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+.disclaimer {
+  font-size: 11px;
+  color: var(--muted-foreground);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
   </style>
 </head>
 <body>
@@ -1335,14 +1453,67 @@ body {
     </div>
   </section>
 
+  <!-- What Happens Next Section -->
+  <section class="next-steps-section">
+    <div class="next-steps-container">
+      <h2 class="section-title">What Happens Next</h2>
+      <div class="steps-grid">
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <p class="step-text">We call or text same day</p>
+        </div>
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <p class="step-text">Confirm your documents</p>
+        </div>
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <p class="step-text">Prepare & e-file</p>
+        </div>
+        <div class="step-item">
+          <div class="step-number">4</div>
+          <p class="step-text">Get your money</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Common Questions Section -->
+  <section class="faq-section">
+    <div class="faq-container">
+      <h2 class="section-title">Common Questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3 class="faq-question">Do I have to get an advance?</h3>
+          <p class="faq-answer">No. You can file with Tax Genius Pro with or without an advance.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">How does the $7,000 advance work?</h3>
+          <p class="faq-answer">If approved, you receive a portion of your expected refund early. When your IRS refund arrives, it repays the advance automatically.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">When can I get it?</h3>
+          <p class="faq-answer">Funds available starting January 2. Most clients receive same-day or next business day.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">What do I need?</h3>
+          <p class="faq-answer">W-2s/1099s, valid ID, Social Security card, and bank account info.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="footer">
-    <div class="footer-links">
-      <a href="https://taxgeniuspro.tax/en/privacy-policy">Privacy Policy</a>
-      <span>|</span>
-      <a href="https://taxgeniuspro.tax/en/terms">Terms of Service</a>
-      <span>|</span>
-      <span>© 2025 Tax Genius Pro</span>
+    <div class="footer-inner">
+      <p class="disclaimer">*Advance amounts based on eligibility, IRS acceptance, and bank approval. Not all applicants qualify for the maximum amount. Funding timing varies by bank. 0% APR and $0 loan fees. Tax preparation fees apply.</p>
+      <div class="footer-links">
+        <a href="https://taxgeniuspro.tax/en/privacy-policy">Privacy Policy</a>
+        <span>|</span>
+        <a href="https://taxgeniuspro.tax/en/terms">Terms of Service</a>
+        <span>|</span>
+        <span>© 2025 Tax Genius Pro. All rights reserved. v2</span>
+      </div>
     </div>
   </footer>
 
