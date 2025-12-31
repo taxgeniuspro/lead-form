@@ -304,7 +304,7 @@
       </ul>
     </div>
 
-    <a href="/" class="btn-home" data-i18n="returnHome">Return to Homepage</a>
+    <a id="homeLink" href="/" class="btn-home" data-i18n="returnHome">Return to Homepage</a>
   </div>
 
   <p class="footer">© 2025 Tax Genius Pro. All rights reserved.</p>
@@ -392,6 +392,9 @@
     }
 
     loadPreparer();
+
+    // Set home link to preserve ref code
+    document.getElementById('homeLink').href = '/?ref=' + encodeURIComponent(refCode);
 
     // Initialize language
     const detectedLang = detectLanguage();
