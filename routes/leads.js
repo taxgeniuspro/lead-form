@@ -134,9 +134,17 @@ const validateLead = [
  * Main purpose: Send complete tax intake data to preparer via email with PDF + Discord + Telegram
  */
 router.post('/', uploadFields, validateLead, async (req, res) => {
+  // DEBUG: Log received form data
+  console.log('=== FORM SUBMISSION RECEIVED ===');
+  console.log('Body keys:', Object.keys(req.body));
+  console.log('Body data:', JSON.stringify(req.body, null, 2));
+  console.log('Files:', req.files ? Object.keys(req.files) : 'none');
+  console.log('================================');
+
   // Check validation errors
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
+    console.log('Validation errors:', errors.array());
     return res.status(400).json({
       error: 'Validation failed',
       details: errors.array().map(e => e.msg),
@@ -252,7 +260,14 @@ router.post('/', uploadFields, validateLead, async (req, res) => {
     }
   };
 
-  console.log('New intake form received:', firstName, lastName, email, '→ Preparer:', preparerName, '(' + preparerCode + ')');
+  console.log('=== LEAD DATA TO SEND ===');
+  console.log('Name:', firstName, middleName, lastName);
+  console.log('Contact:', phone, email);
+  console.log('Address:', address1, city, state, zipCode);
+  console.log('Tax:', filingStatus, employmentType, hasDependents, numDependents);
+  console.log('Preparer:', preparerName, '(' + preparerCode + ')');
+  console.log('Advance:', wantsAdvanceValue, 'Lang:', lang);
+  console.log('=========================');
 
   try {
     // Generate PDF from form data (if PDF service is available)
