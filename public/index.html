@@ -856,18 +856,6 @@ body {
     </div>
   </header>
 
-  <!-- Progress Bar (only for full intake form) -->
-  <div class="progress-container" id="progressContainer">
-    <div class="progress-inner">
-      <div class="progress-bar">
-        <div class="progress-fill" id="progressFill"></div>
-      </div>
-      <div class="progress-text">
-        <span id="progressPercent">0%</span>
-      </div>
-    </div>
-  </div>
-
   <!-- Hero Section - matches TaxGeniusPro -->
   <section class="hero">
     <div class="hero-glow"></div>
@@ -937,6 +925,7 @@ body {
             <form id="advanceForm">
               <input type="hidden" id="advRefCode" name="refCode" value="">
               <input type="hidden" name="wantsAdvance" value="true">
+              <input type="hidden" id="advLang" name="lang" value="en">
 
               <div class="form-row">
                 <div class="form-group">
@@ -1008,6 +997,7 @@ body {
       <div id="fullIntakeFormContainer">
         <form id="intakeForm" enctype="multipart/form-data">
           <input type="hidden" id="refCode" name="refCode" value="">
+          <input type="hidden" id="intakeLang" name="lang" value="en">
 
           <!-- STEP 1: Basic Info -->
           <div class="form-step active" id="step1">
@@ -1127,50 +1117,50 @@ body {
           <!-- STEP 3: Personal & Filing Info -->
           <div class="form-step" id="step3">
             <div class="step-header">
-              <h2>Personal Details</h2>
-              <p>Enter your legal information</p>
+              <h2 data-i18n="step2Title">Personal Details</h2>
+              <p data-i18n="step2Subtitle">Enter your legal information</p>
             </div>
 
             <div class="form-row">
               <div class="form-group">
-                <label for="dob">Date of Birth <span class="required">*</span></label>
+                <label for="dob" data-i18n="dob">Date of Birth *</label>
                 <input type="date" id="dob" name="dob" required>
               </div>
               <div class="form-group">
-                <label for="ssn">Social Security # <span class="required">*</span></label>
+                <label for="ssn" data-i18n="ssn">Social Security # *</label>
                 <input type="text" id="ssn" name="ssn" required placeholder="XXX-XX-XXXX" maxlength="11" autocomplete="off">
-                <p class="helper-text">Format: 123-45-6789</p>
+                <p class="helper-text" data-i18n="ssnFormat">Format: 123-45-6789</p>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="claimedAsDependent">Will anyone be claiming you as a Dependent? <span class="required">*</span></label>
+              <label for="claimedAsDependent" data-i18n="claimedAsDependent">Will anyone be claiming you as a Dependent?</label>
               <select id="claimedAsDependent" name="claimedAsDependent" required>
                 <option value="">Select</option>
-                <option value="no">No</option>
-                <option value="yes">Yes</option>
+                <option value="no" data-i18n="no">No</option>
+                <option value="yes" data-i18n="yes">Yes</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="filingStatus">Filing Status <span class="required">*</span></label>
+              <label for="filingStatus" data-i18n="filingStatus">Filing Status *</label>
               <select id="filingStatus" name="filingStatus" required>
-                <option value="">Select Filing Status</option>
-                <option value="single">Single</option>
-                <option value="married_joint">Married Filing Jointly</option>
-                <option value="married_separate">Married Filing Separately</option>
-                <option value="head_household">Head of Household</option>
+                <option value="" data-i18n="selectState">Select</option>
+                <option value="single" data-i18n="single">Single</option>
+                <option value="married_joint" data-i18n="marriedJoint">Married Filing Jointly</option>
+                <option value="married_separate" data-i18n="marriedSeparate">Married Filing Separately</option>
+                <option value="head_household" data-i18n="headHousehold">Head of Household</option>
                 <option value="widow">Qualifying Widow(er)</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="employmentType">Employee or Self Employed? <span class="required">*</span></label>
+              <label for="employmentType" data-i18n="employmentType">Employment Type *</label>
               <select id="employmentType" name="employmentType" required>
                 <option value="">Select</option>
-                <option value="W2">W-2 (Company Employee)</option>
-                <option value="1099">1099 (Self-Employed)</option>
-                <option value="Both">Both W-2 & 1099</option>
+                <option value="W2" data-i18n="w2Employee">W-2 (Company Employee)</option>
+                <option value="1099" data-i18n="selfEmployed">1099 (Self-Employed)</option>
+                <option value="Both" data-i18n="both">Both W-2 & 1099</option>
                 <option value="Unemployed">Unemployed</option>
                 <option value="Retired">Retired</option>
               </select>
@@ -1188,56 +1178,56 @@ body {
           <!-- STEP 4: Employment & Dependents -->
           <div class="form-step" id="step4">
             <div class="step-header">
-              <h2>Employment & Dependents</h2>
-              <p>Tell us about your work and family</p>
+              <h2 data-i18n="step4Title">Tax Information</h2>
+              <p data-i18n="step4Subtitle">Tell us about your filing status</p>
             </div>
 
             <div class="form-group">
-              <label for="occupation">Occupation <span class="required">*</span></label>
-              <input type="text" id="occupation" name="occupation" required placeholder="e.g. Nurse, Teacher, Driver, DSP">
+              <label for="occupation" data-i18n="occupation">Occupation *</label>
+              <input type="text" id="occupation" name="occupation" required data-i18n-placeholder="occupationPlaceholder" placeholder="e.g. Nurse, Teacher, Driver, DSP">
             </div>
 
             <div class="form-group">
-              <label for="inCollege">Are you currently in College?</label>
+              <label for="inCollege" data-i18n="inCollege">Are you currently in College?</label>
               <select id="inCollege" name="inCollege">
-                <option value="no">No</option>
-                <option value="yes">Yes</option>
+                <option value="no" data-i18n="no">No</option>
+                <option value="yes" data-i18n="yes">Yes</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="numDependents">Number of Dependents</label>
+              <label for="numDependents" data-i18n="numDependents">Number of Dependents</label>
               <select id="numDependents" name="numDependents">
                 <option value="0">None</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
-                <option value="5+">5 or more</option>
+                <option value="5+">5+</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="dependentsUnder24">Dependents under 24 or disabled?</label>
+              <label for="dependentsUnder24" data-i18n="dependentsUnder24">Dependents under 24 or disabled?</label>
               <select id="dependentsUnder24" name="dependentsUnder24">
-                <option value="no">No</option>
-                <option value="yes">Yes</option>
+                <option value="no" data-i18n="no">No</option>
+                <option value="yes" data-i18n="yes">Yes</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="dependentsInCollege">Dependents in College?</label>
+              <label for="dependentsInCollege" data-i18n="dependentsInCollege">Dependents in College?</label>
               <select id="dependentsInCollege" name="dependentsInCollege">
-                <option value="no">No</option>
-                <option value="yes">Yes</option>
+                <option value="no" data-i18n="no">No</option>
+                <option value="yes" data-i18n="yes">Yes</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="childCare">Do you pay for Child Care?</label>
+              <label for="childCare" data-i18n="childCare">Do you pay for Child Care?</label>
               <select id="childCare" name="childCare">
-                <option value="no">No</option>
-                <option value="yes">Yes</option>
+                <option value="no" data-i18n="no">No</option>
+                <option value="yes" data-i18n="yes">Yes</option>
               </select>
             </div>
 
@@ -1253,46 +1243,46 @@ body {
           <!-- STEP 5: Tax Details -->
           <div class="form-step" id="step5">
             <div class="step-header">
-              <h2>Tax Details</h2>
-              <p>A few more questions about your taxes</p>
+              <h2 data-i18n="step5Title">Upload Documents</h2>
+              <p data-i18n="step5Subtitle">A few more questions about your taxes</p>
             </div>
 
             <div class="form-group">
-              <label for="hasMortgage">Do you have a Mortgage?</label>
+              <label for="hasMortgage" data-i18n="hasMortgage">Do you have a Mortgage?</label>
               <select id="hasMortgage" name="hasMortgage">
-                <option value="no">No</option>
-                <option value="yes">Yes</option>
+                <option value="no" data-i18n="no">No</option>
+                <option value="yes" data-i18n="yes">Yes</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="deniedEITC">Have you ever been Denied EITC?</label>
+              <label for="deniedEITC" data-i18n="deniedEITC">Have you ever been Denied EITC?</label>
               <select id="deniedEITC" name="deniedEITC">
-                <option value="no">No</option>
-                <option value="yes">Yes</option>
+                <option value="no" data-i18n="no">No</option>
+                <option value="yes" data-i18n="yes">Yes</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="hasIrsPin">Do you have an IRS PIN?</label>
+              <label for="hasIrsPin" data-i18n="hasIrsPin">Do you have an IRS PIN?</label>
               <select id="hasIrsPin" name="hasIrsPin">
-                <option value="no">No</option>
-                <option value="yes">Yes</option>
+                <option value="no" data-i18n="no">No</option>
+                <option value="yes" data-i18n="yes">Yes</option>
               </select>
             </div>
 
             <div id="irsPinSection" style="display: none;">
               <div class="form-group">
-                <label for="irsPin">IRS PIN Number</label>
-                <input type="text" id="irsPin" name="irsPin" placeholder="Enter your 6-digit IRS PIN" maxlength="6">
+                <label for="irsPin" data-i18n="irsPinNumber">IRS PIN Number</label>
+                <input type="text" id="irsPin" name="irsPin" data-i18n-placeholder="irsPinPlaceholder" placeholder="Enter your 6-digit IRS PIN" maxlength="6">
               </div>
             </div>
 
             <div class="form-group">
-              <label for="wantsCashAdvance">Do you want a Cash Advance on your refund?</label>
+              <label for="wantsCashAdvance" data-i18n="wantsCashAdvance">Do you want a Cash Advance on your refund?</label>
               <select id="wantsCashAdvance" name="wantsCashAdvance">
-                <option value="no">No</option>
-                <option value="yes">Yes</option>
+                <option value="no" data-i18n="no">No</option>
+                <option value="yes" data-i18n="yes">Yes</option>
               </select>
             </div>
 
@@ -1308,23 +1298,23 @@ body {
           <!-- STEP 6: ID Upload & Submit -->
           <div class="form-step" id="step6">
             <div class="step-header">
-              <h2>ID Information</h2>
-              <p>Enter your ID details and upload a photo</p>
+              <h2 data-i18n="step6Title">Review & Submit</h2>
+              <p data-i18n="step6Subtitle">Please review your information before submitting</p>
             </div>
 
             <div class="form-row">
               <div class="form-group">
-                <label for="licenseNumber">Driver's License / State ID Number</label>
+                <label for="licenseNumber" data-i18n="licenseNumber">License/ID Number *</label>
                 <input type="text" id="licenseNumber" name="licenseNumber" placeholder="e.g. VP436157" maxlength="20">
               </div>
               <div class="form-group">
-                <label for="licenseExpiration">ID Expiration Date</label>
+                <label for="licenseExpiration" data-i18n="licenseExpiration">Expiration Date *</label>
                 <input type="date" id="licenseExpiration" name="licenseExpiration">
               </div>
             </div>
 
             <div class="form-group">
-              <label>Upload ID Photo (Optional)</label>
+              <label data-i18n="idUpload">Driver's License or State ID (Optional)</label>
               <div class="upload-area" id="idUploadArea">
                 <input type="file" id="idDocument" name="idDocument" accept="image/*,.pdf" style="display: none;">
                 <label for="idDocument" class="upload-label">
@@ -1514,6 +1504,7 @@ body {
         hasIrsPin: 'Do you have an IRS PIN?',
         irsPinNumber: 'IRS PIN Number',
         irsPinPlaceholder: 'Enter your 6-digit IRS PIN',
+        wantsCashAdvance: 'Do you want a Cash Advance on your refund?',
         // Documents
         idUpload: "Driver's License or State ID (Optional)",
         idUploadText: 'Click or drag to upload your ID',
@@ -1607,6 +1598,7 @@ body {
         hasIrsPin: '¿Tiene un PIN del IRS?',
         irsPinNumber: 'Número de PIN del IRS',
         irsPinPlaceholder: 'Ingrese su PIN de 6 dígitos del IRS',
+        wantsCashAdvance: '¿Desea un Adelanto en Efectivo de su reembolso?',
         // Documents
         idUpload: 'Licencia de Conducir o Identificación Estatal (Opcional)',
         idUploadText: 'Haga clic o arrastre para subir su identificación',
@@ -1652,13 +1644,14 @@ body {
         }
       });
 
+      // Update hidden lang fields in forms
+      const advLangField = document.getElementById('advLang');
+      const intakeLangField = document.getElementById('intakeLang');
+      if (advLangField) advLangField.value = lang;
+      if (intakeLangField) intakeLangField.value = lang;
+
       // Store preference
       localStorage.setItem('preferredLang', lang);
-
-      // Update URL without reload
-      const url = new URL(window.location);
-      url.searchParams.set('lang', lang);
-      history.replaceState(null, '', url);
     }
 
     // Detect language on load
@@ -1846,6 +1839,7 @@ body {
       fd.append('refCode', document.getElementById('advRefCode').value);
       fd.append('wantsAdvance', 'true');
       fd.append('consent', 'true');
+      fd.append('lang', currentLang); // Include language for Telegram routing
       try {
         const res = await fetch('/api/leads', { method: 'POST', body: fd });
         const data = await res.json();
@@ -1875,6 +1869,10 @@ body {
       });
       fd.append('wantsAdvance', document.getElementById('wantsCashAdvance')?.value === 'yes' ? 'true' : 'false');
       fd.append('consent', 'true');
+      fd.append('lang', currentLang); // Include language for Telegram routing
+      // Derive hasDependents from numDependents
+      const numDeps = document.getElementById('numDependents')?.value;
+      fd.append('hasDependents', numDeps && numDeps !== '0' ? 'yes' : 'no');
       // ID file upload
       const idFile = document.getElementById('idDocument').files[0];
       if (idFile) fd.append('idDocument', idFile);

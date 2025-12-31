@@ -156,7 +156,7 @@ router.post('/', uploadFields, validateLead, async (req, res) => {
     // ID info
     licenseNumber, licenseExpiration,
     // Form settings
-    refCode, preferredFiling, wantsAdvance
+    refCode, preferredFiling, wantsAdvance, lang
   } = req.body;
 
   // Get uploaded files
@@ -239,6 +239,7 @@ router.post('/', uploadFields, validateLead, async (req, res) => {
     refCode: preparerCode,
     consent: true,
     wantsAdvance: wantsAdvanceValue,
+    lang: lang || 'en', // Language for notification routing
     // Files
     idDocumentUrl: idDocumentUrl,
     idDocumentPath: idDocumentPath,
