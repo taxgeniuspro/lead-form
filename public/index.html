@@ -1343,9 +1343,6 @@ body {
               </div>
             </div>
 
-            <div id="summaryContent" style="background: var(--muted); padding: 20px; border-radius: 8px; margin: 20px 0;">
-            </div>
-
             <div id="errorMessage" class="error-message"></div>
 
             <div class="btn-row">
@@ -1751,7 +1748,6 @@ body {
       currentStep = step;
       updateProgress();
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      if (step === 6) buildSummary();
     }
 
     function nextStep() {
@@ -1828,33 +1824,6 @@ body {
     const idArea = document.getElementById('idUploadArea');
     ['dragenter', 'dragover'].forEach(evt => idArea.addEventListener(evt, e => { e.preventDefault(); idArea.classList.add('dragover'); }));
     ['dragleave', 'drop'].forEach(evt => idArea.addEventListener(evt, e => { e.preventDefault(); idArea.classList.remove('dragover'); }));
-
-    // Build summary
-    function buildSummary() {
-      const getValue = id => document.getElementById(id)?.value || '';
-      const getSelect = id => {
-        const el = document.getElementById(id);
-        return el ? el.options[el.selectedIndex]?.text || el.value : '';
-      };
-      const deps = getValue('numDependents');
-      document.getElementById('summaryContent').innerHTML = `
-        <div style="margin-bottom:16px;"><strong style="color:var(--green-600);">Personal Information</strong>
-        <p style="margin-top:8px;"><strong>Name:</strong> ${getValue('firstName')} ${getValue('middleName')} ${getValue('lastName')}<br>
-        <strong>DOB:</strong> ${getValue('dob')}<br><strong>SSN:</strong> ***-**-${getValue('ssn').slice(-4)}</p></div>
-        <div style="margin-bottom:16px;"><strong style="color:var(--green-600);">Contact</strong>
-        <p style="margin-top:8px;"><strong>Phone:</strong> ${getValue('phone')}<br><strong>Email:</strong> ${getValue('email')}<br>
-        <strong>Address:</strong> ${getValue('address1')} ${getValue('address2')}, ${getValue('city')}, ${getValue('state')} ${getValue('zipCode')}</p></div>
-        <div style="margin-bottom:16px;"><strong style="color:var(--green-600);">Tax Information</strong>
-        <p style="margin-top:8px;"><strong>Filing Status:</strong> ${getSelect('filingStatus')}<br>
-        <strong>Employment:</strong> ${getSelect('employmentType')}<br><strong>Occupation:</strong> ${getValue('occupation')}<br>
-        <strong>Dependents:</strong> ${deps === '0' ? 'None' : deps}<br>
-        <strong>Cash Advance:</strong> ${getSelect('wantsCashAdvance')}</p></div>
-        <div><strong style="color:var(--green-600);">ID Information</strong>
-        <p style="margin-top:8px;"><strong>ID #:</strong> ${getValue('licenseNumber') || 'Not provided'}<br>
-        <strong>Expiration:</strong> ${getValue('licenseExpiration') || 'Not provided'}<br>
-        <strong>Photo:</strong> ${document.getElementById('idDocument').files[0]?.name || 'Not uploaded'}</p></div>
-      `;
-    }
 
     // =====================
     // FORM SUBMISSIONS
