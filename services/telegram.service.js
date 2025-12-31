@@ -38,22 +38,25 @@ async function fetchWithRetry(url, options, maxRetries = 3, timeout = 30000) {
 
 /**
  * Send comprehensive lead notification to Telegram
- * Sends to BOTH English and Spanish bots for redundancy
+ * Routes to Spanish or English bot based on form language
  */
 async function sendLeadToTelegram(leadData) {
   const chatId = process.env.TELEGRAM_CHAT_ID || '7154912264';
 
-  // Both bots for redundancy
-  const bots = [
-    {
-      name: 'English',
-      token: process.env.TELEGRAM_BOT_TOKEN || '7904997613:AAFWL7jt240sSn5Vt8ShOHmt7iV8krKb0Jo'
-    },
-    {
-      name: 'Spanish',
-      token: process.env.TELEGRAM_BOT_TOKEN_ES || '7776905155:AAF0FCIGHoAi5e2KVR_AbBizF1SW-1qD-DQ'
-    }
-  ];
+  // Bot configuration
+  const englishBot = {
+    name: 'English',
+    token: process.env.TELEGRAM_BOT_TOKEN || '7904997613:AAFWL7jt240sSn5Vt8ShOHmt7iV8krKb0Jo'
+  };
+  const spanishBot = {
+    name: 'Spanish',
+    token: process.env.TELEGRAM_BOT_TOKEN_ES || '7776905155:AAF0FCIGHoAi5e2KVR_AbBizF1SW-1qD-DQ'
+  };
+
+  // Route to correct bot based on language (default to English)
+  const lang = leadData.lang || 'en';
+  const bot = lang === 'es' ? spanishBot : englishBot;
+  console.log(`Form language: ${lang}, using ${bot.name} Telegram bot`);
 
   if (!chatId) {
     console.log('Telegram chat ID not configured, skipping');
@@ -179,45 +182,31 @@ ${taxDocumentUrls && taxDocumentUrls.length > 0 ? `\n📄 *Tax Docs:* ${taxDocum
     `.trim();
   }
 
-  // Send to all bots in parallel
-  const results = await Promise.allSettled(
-    bots.map(async (bot) => {
-      try {
-        const url = `https://api.telegram.org/bot${bot.token}/sendMessage`;
-        const response = await fetchWithRetry(url, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            chat_id: chatId,
-            text: message,
-            parse_mode: 'Markdown',
-            disable_web_page_preview: true,
-          }),
-        });
+  // Send to the selected bot based on language
+  try {
+    const url = `https://api.telegram.org/bot${bot.token}/sendMessage`;
+    const response = await fetchWithRetry(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: message,
+        parse_mode: 'Markdown',
+        disable_web_page_preview: true,
+      }),
+    });
 
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(`${bot.name} bot error: ${errorData.description}`);
-        }
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(`${bot.name} bot error: ${errorData.description}`);
+    }
 
-        console.log(`Telegram ${bot.name} bot: sent successfully`);
-        return { bot: bot.name, success: true };
-      } catch (error) {
-        console.error(`Telegram ${bot.name} bot failed:`, error.message);
-        return { bot: bot.name, success: false, error: error.message };
-      }
-    })
-  );
-
-  // Return true if at least one bot succeeded
-  const successes = results.filter(r => r.status === 'fulfilled' && r.value.success);
-  if (successes.length > 0) {
-    console.log(`Telegram notifications: ${successes.length}/${bots.length} bots succeeded`);
+    console.log(`Telegram ${bot.name} bot: sent successfully`);
     return true;
+  } catch (error) {
+    console.error(`Telegram ${bot.name} bot failed:`, error.message);
+    return false;
   }
-
-  console.error('All Telegram bots failed to send notification');
-  return false;
 }
 
 module.exports = { sendLeadToTelegram };
