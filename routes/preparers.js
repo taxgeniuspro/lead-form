@@ -65,6 +65,7 @@ router.get('/by-code', (req, res) => {
       lastName: preparer.lastName,
       title: preparer.title,
       avatarUrl: preparer.avatarUrl,
+      phone: preparer.phone,
       fullName: `${preparer.firstName} ${preparer.lastName}`
     }
   });
