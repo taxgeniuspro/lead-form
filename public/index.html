@@ -523,6 +523,41 @@ body {
   margin-top: 8px;
 }
 
+/* Upload Area (Step 6) */
+.upload-area {
+  border: 2px dashed var(--border);
+  border-radius: 12px;
+  padding: 32px 24px;
+  text-align: center;
+  transition: all 0.2s;
+}
+.upload-area:hover,
+.upload-area.dragover {
+  border-color: var(--green-500);
+  background: rgba(34, 197, 94, 0.05);
+}
+.upload-area.has-file {
+  border-color: var(--green-500);
+  background: rgba(34, 197, 94, 0.05);
+}
+.upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  color: var(--muted-foreground);
+}
+.upload-label svg {
+  color: var(--muted-foreground);
+}
+.upload-label:hover svg {
+  color: var(--green-500);
+}
+.preview-container img {
+  margin-top: 10px;
+  border-radius: 8px;
+}
+
 /* Buttons */
 .btn-row {
   display: flex;
@@ -971,16 +1006,15 @@ body {
       <!-- FULL 6-STEP INTAKE FORM -->
       <!-- ===================== -->
       <div id="fullIntakeFormContainer">
-        <form id="intakeForm">
+        <form id="intakeForm" enctype="multipart/form-data">
           <input type="hidden" id="refCode" name="refCode" value="">
-          <input type="hidden" id="wantsAdvance" name="wantsAdvance" value="false">
 
-          <!-- STEP 1: Start Your Tax Filing (Simple like advance form) -->
+          <!-- STEP 1: Basic Info -->
           <div class="form-step active" id="step1">
             <div class="form-card">
               <div class="form-card-header">
                 <h2 data-i18n="fileFormTitle">Start Your Tax Filing</h2>
-                <p data-i18n="fileFormSubtitle">Complete your intake to get started</p>
+                <p data-i18n="fileFormSubtitle">Let's start with your basic information</p>
               </div>
               <div class="form-card-body">
                 <div class="form-row">
@@ -989,33 +1023,23 @@ body {
                     <input type="text" id="firstName" name="firstName" required maxlength="50" placeholder="John" autocomplete="given-name">
                   </div>
                   <div class="form-group">
+                    <label for="middleName">Middle Name</label>
+                    <input type="text" id="middleName" name="middleName" maxlength="50" placeholder="Michael" autocomplete="additional-name">
+                  </div>
+                  <div class="form-group">
                     <label for="lastName">Last Name <span class="required">*</span></label>
                     <input type="text" id="lastName" name="lastName" required maxlength="50" placeholder="Smith" autocomplete="family-name">
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label for="phone">Phone Number <span class="required">*</span></label>
-                  <input type="tel" id="phone" name="phone" required placeholder="(555) 123-4567" autocomplete="tel">
+                  <label for="email">Email <span class="required">*</span></label>
+                  <input type="email" id="email" name="email" required placeholder="john@email.com" autocomplete="email">
                 </div>
 
                 <div class="form-group">
-                  <label for="email">Email</label>
-                  <input type="email" id="email" name="email" placeholder="john@email.com" autocomplete="email">
-                </div>
-
-                <div class="form-row">
-                  <div class="form-group">
-                    <label for="zipCode">Zip Code <span class="required">*</span></label>
-                    <input type="text" id="zipCode" name="zipCode" required placeholder="30301" maxlength="5" pattern="[0-9]{5}" autocomplete="postal-code">
-                  </div>
-                  <div class="form-group">
-                    <label for="preferredFiling">Filing Preference</label>
-                    <select id="preferredFiling" name="preferredFiling">
-                      <option value="remote">Remote</option>
-                      <option value="in-person">In-Person</option>
-                    </select>
-                  </div>
+                  <label for="phone">Phone Number <span class="required">*</span></label>
+                  <input type="tel" id="phone" name="phone" required placeholder="(555) 123-4567" autocomplete="tel">
                 </div>
 
                 <div class="checkbox-group">
@@ -1026,7 +1050,7 @@ body {
                 </div>
 
                 <button type="button" class="btn btn-primary btn-full" onclick="nextStep()">
-                  START MY TAX FILING
+                  CONTINUE
                 </button>
 
                 <div class="secure-badge">
@@ -1040,41 +1064,8 @@ body {
             </div>
           </div>
 
-          <!-- STEP 2: Personal Details (DOB, SSN) -->
+          <!-- STEP 2: Address -->
           <div class="form-step" id="step2">
-            <div class="step-header">
-              <h2>Personal Details</h2>
-              <p>Enter your legal information as it appears on your ID</p>
-            </div>
-
-            <div class="form-group">
-              <label for="middleName">Middle Name</label>
-              <input type="text" id="middleName" name="middleName" maxlength="50" placeholder="Michael" autocomplete="additional-name">
-            </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label for="dob">Date of Birth <span class="required">*</span></label>
-                <input type="date" id="dob" name="dob" required>
-              </div>
-              <div class="form-group">
-                <label for="ssn">Social Security # <span class="required">*</span></label>
-                <input type="text" id="ssn" name="ssn" required placeholder="XXX-XX-XXXX" maxlength="11" autocomplete="off">
-                <p class="helper-text">Format: 123-45-6789</p>
-              </div>
-            </div>
-
-            <div class="btn-row">
-              <button type="button" class="btn btn-secondary" onclick="prevStep()">Back</button>
-              <button type="button" class="btn btn-primary" onclick="nextStep()">
-                Continue
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </button>
-            </div>
-          </div>
-
-          <!-- STEP 3: Address -->
-          <div class="form-step" id="step3">
             <div class="step-header">
               <h2>Your Address</h2>
               <p>Where do you live?</p>
@@ -1118,6 +1109,10 @@ body {
                   <option value="WI">Wisconsin</option><option value="WY">Wyoming</option><option value="DC">Washington DC</option>
                 </select>
               </div>
+              <div class="form-group">
+                <label for="zipCode">Zip Code <span class="required">*</span></label>
+                <input type="text" id="zipCode" name="zipCode" required placeholder="30301" maxlength="5" pattern="[0-9]{5}" autocomplete="postal-code">
+              </div>
             </div>
 
             <div class="btn-row">
@@ -1129,195 +1124,161 @@ body {
             </div>
           </div>
 
-          <!-- STEP 4: Tax Info -->
+          <!-- STEP 3: Personal & Filing Info -->
+          <div class="form-step" id="step3">
+            <div class="step-header">
+              <h2>Personal Details</h2>
+              <p>Enter your legal information</p>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="dob">Date of Birth <span class="required">*</span></label>
+                <input type="date" id="dob" name="dob" required>
+              </div>
+              <div class="form-group">
+                <label for="ssn">Social Security # <span class="required">*</span></label>
+                <input type="text" id="ssn" name="ssn" required placeholder="XXX-XX-XXXX" maxlength="11" autocomplete="off">
+                <p class="helper-text">Format: 123-45-6789</p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="claimedAsDependent">Will anyone be claiming you as a Dependent? <span class="required">*</span></label>
+              <select id="claimedAsDependent" name="claimedAsDependent" required>
+                <option value="">Select</option>
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="filingStatus">Filing Status <span class="required">*</span></label>
+              <select id="filingStatus" name="filingStatus" required>
+                <option value="">Select Filing Status</option>
+                <option value="single">Single</option>
+                <option value="married_joint">Married Filing Jointly</option>
+                <option value="married_separate">Married Filing Separately</option>
+                <option value="head_household">Head of Household</option>
+                <option value="widow">Qualifying Widow(er)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="employmentType">Employee or Self Employed? <span class="required">*</span></label>
+              <select id="employmentType" name="employmentType" required>
+                <option value="">Select</option>
+                <option value="W2">W-2 (Company Employee)</option>
+                <option value="1099">1099 (Self-Employed)</option>
+                <option value="Both">Both W-2 & 1099</option>
+                <option value="Unemployed">Unemployed</option>
+                <option value="Retired">Retired</option>
+              </select>
+            </div>
+
+            <div class="btn-row">
+              <button type="button" class="btn btn-secondary" onclick="prevStep()">Back</button>
+              <button type="button" class="btn btn-primary" onclick="nextStep()">
+                Continue
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 4: Employment & Dependents -->
           <div class="form-step" id="step4">
             <div class="step-header">
-              <h2>Tax Information</h2>
-              <p>Tell us about your filing status</p>
-            </div>
-
-            <div class="form-group">
-              <label>Filing Status <span class="required">*</span></label>
-              <div class="radio-group">
-                <div class="radio-option">
-                  <input type="radio" id="single" name="filingStatus" value="single" required>
-                  <label for="single">Single</label>
-                </div>
-                <div class="radio-option">
-                  <input type="radio" id="married_joint" name="filingStatus" value="married_joint">
-                  <label for="married_joint">Married Filing Jointly</label>
-                </div>
-                <div class="radio-option">
-                  <input type="radio" id="married_separate" name="filingStatus" value="married_separate">
-                  <label for="married_separate">Married Filing Separately</label>
-                </div>
-                <div class="radio-option">
-                  <input type="radio" id="head_household" name="filingStatus" value="head_household">
-                  <label for="head_household">Head of Household</label>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label>Employment Type <span class="required">*</span></label>
-              <div class="radio-group">
-                <div class="radio-option">
-                  <input type="radio" id="w2" name="employmentType" value="W2" required>
-                  <label for="w2">W-2 Employee</label>
-                </div>
-                <div class="radio-option">
-                  <input type="radio" id="1099" name="employmentType" value="1099">
-                  <label for="1099">1099 Self-Employed</label>
-                </div>
-                <div class="radio-option">
-                  <input type="radio" id="both" name="employmentType" value="Both">
-                  <label for="both">Both W-2 & 1099</label>
-                </div>
-              </div>
+              <h2>Employment & Dependents</h2>
+              <p>Tell us about your work and family</p>
             </div>
 
             <div class="form-group">
               <label for="occupation">Occupation <span class="required">*</span></label>
-              <input type="text" id="occupation" name="occupation" required placeholder="e.g. Nurse, Teacher, Driver">
+              <input type="text" id="occupation" name="occupation" required placeholder="e.g. Nurse, Teacher, Driver, DSP">
             </div>
 
             <div class="form-group">
-              <label>Do you have dependents?</label>
-              <div class="radio-group">
-                <div class="radio-option">
-                  <input type="radio" id="deps_yes" name="hasDependents" value="yes">
-                  <label for="deps_yes">Yes</label>
-                </div>
-                <div class="radio-option">
-                  <input type="radio" id="deps_no" name="hasDependents" value="no" checked>
-                  <label for="deps_no">No</label>
-                </div>
-              </div>
-            </div>
-
-            <div id="dependentsSection" style="display: none;">
-              <div class="form-group">
-                <label for="numDependents">Number of Dependents</label>
-                <select id="numDependents" name="numDependents">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5+">5 or more</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label>Dependents under 24 or disabled?</label>
-                <div class="radio-group">
-                  <div class="radio-option">
-                    <input type="radio" id="depsUnder24_yes" name="dependentsUnder24" value="yes">
-                    <label for="depsUnder24_yes">Yes</label>
-                  </div>
-                  <div class="radio-option">
-                    <input type="radio" id="depsUnder24_no" name="dependentsUnder24" value="no" checked>
-                    <label for="depsUnder24_no">No</label>
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label>Dependents in College?</label>
-                <div class="radio-group">
-                  <div class="radio-option">
-                    <input type="radio" id="depsCollege_yes" name="dependentsInCollege" value="yes">
-                    <label for="depsCollege_yes">Yes</label>
-                  </div>
-                  <div class="radio-option">
-                    <input type="radio" id="depsCollege_no" name="dependentsInCollege" value="no" checked>
-                    <label for="depsCollege_no">No</label>
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label>Do you pay for Child Care?</label>
-                <div class="radio-group">
-                  <div class="radio-option">
-                    <input type="radio" id="childCare_yes" name="childCare" value="yes">
-                    <label for="childCare_yes">Yes</label>
-                  </div>
-                  <div class="radio-option">
-                    <input type="radio" id="childCare_no" name="childCare" value="no" checked>
-                    <label for="childCare_no">No</label>
-                  </div>
-                </div>
-              </div>
+              <label for="inCollege">Are you currently in College?</label>
+              <select id="inCollege" name="inCollege">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+              </select>
             </div>
 
             <div class="form-group">
-              <label>Will anyone be claiming you as a Dependent?</label>
-              <div class="radio-group">
-                <div class="radio-option">
-                  <input type="radio" id="claimedAsDependent_yes" name="claimedAsDependent" value="yes">
-                  <label for="claimedAsDependent_yes">Yes</label>
-                </div>
-                <div class="radio-option">
-                  <input type="radio" id="claimedAsDependent_no" name="claimedAsDependent" value="no" checked>
-                  <label for="claimedAsDependent_no">No</label>
-                </div>
-              </div>
+              <label for="numDependents">Number of Dependents</label>
+              <select id="numDependents" name="numDependents">
+                <option value="0">None</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5+">5 or more</option>
+              </select>
             </div>
 
             <div class="form-group">
-              <label>Are you currently in College?</label>
-              <div class="radio-group">
-                <div class="radio-option">
-                  <input type="radio" id="inCollege_yes" name="inCollege" value="yes">
-                  <label for="inCollege_yes">Yes</label>
-                </div>
-                <div class="radio-option">
-                  <input type="radio" id="inCollege_no" name="inCollege" value="no" checked>
-                  <label for="inCollege_no">No</label>
-                </div>
-              </div>
+              <label for="dependentsUnder24">Dependents under 24 or disabled?</label>
+              <select id="dependentsUnder24" name="dependentsUnder24">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+              </select>
             </div>
 
             <div class="form-group">
-              <label>Do you have a Mortgage?</label>
-              <div class="radio-group">
-                <div class="radio-option">
-                  <input type="radio" id="mortgage_yes" name="hasMortgage" value="yes">
-                  <label for="mortgage_yes">Yes</label>
-                </div>
-                <div class="radio-option">
-                  <input type="radio" id="mortgage_no" name="hasMortgage" value="no" checked>
-                  <label for="mortgage_no">No</label>
-                </div>
-              </div>
+              <label for="dependentsInCollege">Dependents in College?</label>
+              <select id="dependentsInCollege" name="dependentsInCollege">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+              </select>
             </div>
 
             <div class="form-group">
-              <label>Have you ever been Denied EITC (Earned Income Tax Credit)?</label>
-              <div class="radio-group">
-                <div class="radio-option">
-                  <input type="radio" id="deniedEITC_yes" name="deniedEITC" value="yes">
-                  <label for="deniedEITC_yes">Yes</label>
-                </div>
-                <div class="radio-option">
-                  <input type="radio" id="deniedEITC_no" name="deniedEITC" value="no" checked>
-                  <label for="deniedEITC_no">No</label>
-                </div>
-              </div>
+              <label for="childCare">Do you pay for Child Care?</label>
+              <select id="childCare" name="childCare">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+              </select>
+            </div>
+
+            <div class="btn-row">
+              <button type="button" class="btn btn-secondary" onclick="prevStep()">Back</button>
+              <button type="button" class="btn btn-primary" onclick="nextStep()">
+                Continue
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 5: Tax Details -->
+          <div class="form-step" id="step5">
+            <div class="step-header">
+              <h2>Tax Details</h2>
+              <p>A few more questions about your taxes</p>
             </div>
 
             <div class="form-group">
-              <label>Do you have an IRS PIN?</label>
-              <div class="radio-group">
-                <div class="radio-option">
-                  <input type="radio" id="irsPin_yes" name="hasIrsPin" value="yes">
-                  <label for="irsPin_yes">Yes</label>
-                </div>
-                <div class="radio-option">
-                  <input type="radio" id="irsPin_no" name="hasIrsPin" value="no" checked>
-                  <label for="irsPin_no">No</label>
-                </div>
-              </div>
+              <label for="hasMortgage">Do you have a Mortgage?</label>
+              <select id="hasMortgage" name="hasMortgage">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="deniedEITC">Have you ever been Denied EITC?</label>
+              <select id="deniedEITC" name="deniedEITC">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="hasIrsPin">Do you have an IRS PIN?</label>
+              <select id="hasIrsPin" name="hasIrsPin">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+              </select>
             </div>
 
             <div id="irsPinSection" style="display: none;">
@@ -1327,6 +1288,14 @@ body {
               </div>
             </div>
 
+            <div class="form-group">
+              <label for="wantsCashAdvance">Do you want a Cash Advance on your refund?</label>
+              <select id="wantsCashAdvance" name="wantsCashAdvance">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+              </select>
+            </div>
+
             <div class="btn-row">
               <button type="button" class="btn btn-secondary" onclick="prevStep()">Back</button>
               <button type="button" class="btn btn-primary" onclick="nextStep()">
@@ -1336,95 +1305,45 @@ body {
             </div>
           </div>
 
-          <!-- STEP 5: Documents -->
-          <div class="form-step" id="step5">
+          <!-- STEP 6: ID Upload & Submit -->
+          <div class="form-step" id="step6">
             <div class="step-header">
-              <h2>Upload Documents</h2>
-              <p>Please upload a photo of your ID and any tax documents</p>
-            </div>
-
-            <div class="form-group">
-              <label>Driver's License or State ID (Optional)</label>
-              <div class="file-upload-area" id="idUploadArea">
-                <input type="file" id="idDocument" name="idDocument" accept="image/*,.pdf">
-                <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/>
-                  <path d="M12 12v9"/><path d="m16 16-4-4-4 4"/>
-                </svg>
-                <p class="upload-text">Click or drag to upload your ID</p>
-                <p class="upload-hint">JPG, PNG, or PDF up to 10MB</p>
-                <div class="file-preview-container" id="idPreviewContainer">
-                  <img id="idPreview" class="file-preview-img" alt="ID Preview">
-                  <p id="idFileName" class="file-name-display"></p>
-                </div>
-              </div>
+              <h2>ID Information</h2>
+              <p>Enter your ID details and upload a photo</p>
             </div>
 
             <div class="form-row">
               <div class="form-group">
-                <label for="licenseNumber">License/ID Number <span class="required">*</span></label>
-                <input type="text" id="licenseNumber" name="licenseNumber" required placeholder="Enter ID number">
+                <label for="licenseNumber">Driver's License / State ID Number</label>
+                <input type="text" id="licenseNumber" name="licenseNumber" placeholder="e.g. VP436157" maxlength="20">
               </div>
               <div class="form-group">
-                <label for="licenseExpiration">Expiration Date <span class="required">*</span></label>
-                <input type="date" id="licenseExpiration" name="licenseExpiration" required>
+                <label for="licenseExpiration">ID Expiration Date</label>
+                <input type="date" id="licenseExpiration" name="licenseExpiration">
               </div>
             </div>
 
             <div class="form-group">
-              <label>W-2 or Other Tax Documents (Optional)</label>
-              <div class="file-upload-area" id="taxDocUploadArea">
-                <input type="file" id="taxDocument" name="taxDocument" accept="image/*,.pdf" multiple>
-                <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
-                  <polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/>
-                </svg>
-                <p class="upload-text">Click or drag to upload tax documents</p>
-                <p class="upload-hint">W-2, 1099, or other forms</p>
-                <div class="file-preview-container" id="taxDocPreviewContainer">
-                  <p id="taxDocFileName" class="file-name-display"></p>
+              <label>Upload ID Photo (Optional)</label>
+              <div class="upload-area" id="idUploadArea">
+                <input type="file" id="idDocument" name="idDocument" accept="image/*,.pdf" style="display: none;">
+                <label for="idDocument" class="upload-label">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 40px; height: 40px; margin-bottom: 10px;">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="17,8 12,3 7,8"/>
+                    <line x1="12" y1="3" x2="12" y2="15"/>
+                  </svg>
+                  <span>Click to upload or drag & drop</span>
+                  <span style="font-size: 12px; color: var(--muted-foreground);">JPG, PNG, or PDF</span>
+                </label>
+                <div id="idPreviewContainer" class="preview-container">
+                  <img id="idPreview" style="max-width: 200px; max-height: 150px; display: none; margin-top: 10px; border-radius: 8px;">
+                  <p id="idFileName" style="margin-top: 8px; font-size: 14px; color: var(--green-600);"></p>
                 </div>
               </div>
             </div>
 
-            <div class="btn-row">
-              <button type="button" class="btn btn-secondary" onclick="prevStep()">Back</button>
-              <button type="button" class="btn btn-primary" onclick="nextStep()">
-                Continue
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </button>
-            </div>
-          </div>
-
-          <!-- STEP 6: Review & Submit -->
-          <div class="form-step" id="step6">
-            <div class="step-header">
-              <h2>Review & Submit</h2>
-              <p>Please review your information before submitting</p>
-            </div>
-
-            <div id="summaryContent" style="background: var(--muted); padding: 20px; border-radius: 8px; margin-bottom: 20px;">
-            </div>
-
-            <div class="form-group">
-              <label>Preferred Filing Method</label>
-              <div class="radio-group">
-                <div class="radio-option">
-                  <input type="radio" id="remote" name="preferredFiling" value="remote" checked>
-                  <label for="remote">Remote / Virtual</label>
-                </div>
-                <div class="radio-option">
-                  <input type="radio" id="inperson" name="preferredFiling" value="in-person">
-                  <label for="inperson">In-Person</label>
-                </div>
-              </div>
-            </div>
-
-            <div class="checkbox-group">
-              <input type="checkbox" id="consent" name="consent" required>
-              <label for="consent">
-                I certify that the information provided is accurate and I agree to be contacted regarding my tax inquiry.
-              </label>
+            <div id="summaryContent" style="background: var(--muted); padding: 20px; border-radius: 8px; margin: 20px 0;">
             </div>
 
             <div id="errorMessage" class="error-message"></div>
@@ -1886,27 +1805,17 @@ body {
       e.target.value = v;
     });
 
-    // Dependents toggle
-    document.querySelectorAll('input[name="hasDependents"]').forEach(r => {
-      r.addEventListener('change', function() {
-        document.getElementById('dependentsSection').style.display = this.value === 'yes' ? 'block' : 'none';
-      });
+    // IRS PIN toggle (dropdown)
+    document.getElementById('hasIrsPin').addEventListener('change', function() {
+      document.getElementById('irsPinSection').style.display = this.value === 'yes' ? 'block' : 'none';
     });
 
-    // IRS PIN toggle
-    document.querySelectorAll('input[name="hasIrsPin"]').forEach(r => {
-      r.addEventListener('change', function() {
-        document.getElementById('irsPinSection').style.display = this.value === 'yes' ? 'block' : 'none';
-      });
-    });
-
-    // File uploads
+    // File upload
     document.getElementById('idDocument').addEventListener('change', function(e) {
       const file = e.target.files[0];
       if (file) {
         document.getElementById('idUploadArea').classList.add('has-file');
         document.getElementById('idFileName').textContent = file.name;
-        document.getElementById('idPreviewContainer').classList.add('show');
         if (file.type.startsWith('image/')) {
           const reader = new FileReader();
           reader.onload = e => { document.getElementById('idPreview').src = e.target.result; document.getElementById('idPreview').style.display = 'block'; };
@@ -1915,25 +1824,19 @@ body {
       }
     });
 
-    document.getElementById('taxDocument').addEventListener('change', function(e) {
-      if (e.target.files.length > 0) {
-        document.getElementById('taxDocUploadArea').classList.add('has-file');
-        document.getElementById('taxDocFileName').textContent = Array.from(e.target.files).map(f => f.name).join(', ');
-        document.getElementById('taxDocPreviewContainer').classList.add('show');
-      }
-    });
-
-    // Drag and drop
-    ['idUploadArea', 'taxDocUploadArea'].forEach(id => {
-      const area = document.getElementById(id);
-      ['dragenter', 'dragover'].forEach(evt => area.addEventListener(evt, e => { e.preventDefault(); area.classList.add('dragover'); }));
-      ['dragleave', 'drop'].forEach(evt => area.addEventListener(evt, e => { e.preventDefault(); area.classList.remove('dragover'); }));
-    });
+    // Drag and drop for ID upload
+    const idArea = document.getElementById('idUploadArea');
+    ['dragenter', 'dragover'].forEach(evt => idArea.addEventListener(evt, e => { e.preventDefault(); idArea.classList.add('dragover'); }));
+    ['dragleave', 'drop'].forEach(evt => idArea.addEventListener(evt, e => { e.preventDefault(); idArea.classList.remove('dragover'); }));
 
     // Build summary
     function buildSummary() {
       const getValue = id => document.getElementById(id)?.value || '';
-      const getRadio = name => document.querySelector(`input[name="${name}"]:checked`)?.value || '';
+      const getSelect = id => {
+        const el = document.getElementById(id);
+        return el ? el.options[el.selectedIndex]?.text || el.value : '';
+      };
+      const deps = getValue('numDependents');
       document.getElementById('summaryContent').innerHTML = `
         <div style="margin-bottom:16px;"><strong style="color:var(--green-600);">Personal Information</strong>
         <p style="margin-top:8px;"><strong>Name:</strong> ${getValue('firstName')} ${getValue('middleName')} ${getValue('lastName')}<br>
@@ -1942,13 +1845,14 @@ body {
         <p style="margin-top:8px;"><strong>Phone:</strong> ${getValue('phone')}<br><strong>Email:</strong> ${getValue('email')}<br>
         <strong>Address:</strong> ${getValue('address1')} ${getValue('address2')}, ${getValue('city')}, ${getValue('state')} ${getValue('zipCode')}</p></div>
         <div style="margin-bottom:16px;"><strong style="color:var(--green-600);">Tax Information</strong>
-        <p style="margin-top:8px;"><strong>Filing Status:</strong> ${getRadio('filingStatus').replace('_', ' ')}<br>
-        <strong>Employment:</strong> ${getRadio('employmentType')}<br><strong>Occupation:</strong> ${getValue('occupation')}<br>
-        <strong>Dependents:</strong> ${getRadio('hasDependents') === 'yes' ? getValue('numDependents') : 'None'}</p></div>
-        <div><strong style="color:var(--green-600);">Documents</strong>
-        <p style="margin-top:8px;"><strong>ID #:</strong> ${getValue('licenseNumber')}<br><strong>ID Expiration:</strong> ${getValue('licenseExpiration')}<br>
-        <strong>ID Photo:</strong> ${document.getElementById('idDocument').files[0]?.name || 'Not uploaded'}<br>
-        <strong>Tax Docs:</strong> ${document.getElementById('taxDocument').files.length > 0 ? Array.from(document.getElementById('taxDocument').files).map(f => f.name).join(', ') : 'None'}</p></div>
+        <p style="margin-top:8px;"><strong>Filing Status:</strong> ${getSelect('filingStatus')}<br>
+        <strong>Employment:</strong> ${getSelect('employmentType')}<br><strong>Occupation:</strong> ${getValue('occupation')}<br>
+        <strong>Dependents:</strong> ${deps === '0' ? 'None' : deps}<br>
+        <strong>Cash Advance:</strong> ${getSelect('wantsCashAdvance')}</p></div>
+        <div><strong style="color:var(--green-600);">ID Information</strong>
+        <p style="margin-top:8px;"><strong>ID #:</strong> ${getValue('licenseNumber') || 'Not provided'}<br>
+        <strong>Expiration:</strong> ${getValue('licenseExpiration') || 'Not provided'}<br>
+        <strong>Photo:</strong> ${document.getElementById('idDocument').files[0]?.name || 'Not uploaded'}</p></div>
       `;
     }
 
@@ -1988,29 +1892,23 @@ body {
       const txt = document.getElementById('submitText');
       const load = document.getElementById('submitLoading');
       const err = document.getElementById('errorMessage');
-      if (!document.getElementById('consent').checked) { err.textContent = 'Please agree to the terms.'; err.style.display = 'block'; return; }
       btn.disabled = true; txt.style.display = 'none'; load.style.display = 'inline-flex'; err.style.display = 'none';
       const fd = new FormData();
-      ['firstName', 'middleName', 'lastName', 'dob', 'ssn', 'phone', 'email', 'address1', 'address2', 'city', 'state', 'zipCode', 'occupation', 'licenseNumber', 'licenseExpiration', 'refCode', 'wantsAdvance'].forEach(f => { const el = document.getElementById(f); if (el) fd.append(f, el.value); });
-      fd.append('filingStatus', document.querySelector('input[name="filingStatus"]:checked')?.value || '');
-      fd.append('employmentType', document.querySelector('input[name="employmentType"]:checked')?.value || '');
-      fd.append('hasDependents', document.querySelector('input[name="hasDependents"]:checked')?.value || 'no');
-      fd.append('numDependents', document.getElementById('numDependents')?.value || '0');
-      fd.append('dependentsUnder24', document.querySelector('input[name="dependentsUnder24"]:checked')?.value || 'no');
-      fd.append('dependentsInCollege', document.querySelector('input[name="dependentsInCollege"]:checked')?.value || 'no');
-      fd.append('childCare', document.querySelector('input[name="childCare"]:checked')?.value || 'no');
-      fd.append('claimedAsDependent', document.querySelector('input[name="claimedAsDependent"]:checked')?.value || 'no');
-      fd.append('inCollege', document.querySelector('input[name="inCollege"]:checked')?.value || 'no');
-      fd.append('hasMortgage', document.querySelector('input[name="hasMortgage"]:checked')?.value || 'no');
-      fd.append('deniedEITC', document.querySelector('input[name="deniedEITC"]:checked')?.value || 'no');
-      fd.append('hasIrsPin', document.querySelector('input[name="hasIrsPin"]:checked')?.value || 'no');
-      fd.append('irsPin', document.getElementById('irsPin')?.value || '');
-      fd.append('preferredFiling', document.querySelector('input[name="preferredFiling"]:checked')?.value || 'remote');
+      // Text inputs
+      ['firstName', 'middleName', 'lastName', 'dob', 'ssn', 'phone', 'email', 'address1', 'address2', 'city', 'state', 'zipCode', 'occupation', 'licenseNumber', 'licenseExpiration', 'irsPin', 'refCode'].forEach(f => {
+        const el = document.getElementById(f);
+        if (el) fd.append(f, el.value);
+      });
+      // Dropdown selects
+      ['filingStatus', 'employmentType', 'claimedAsDependent', 'inCollege', 'numDependents', 'dependentsUnder24', 'dependentsInCollege', 'childCare', 'hasMortgage', 'deniedEITC', 'hasIrsPin', 'wantsCashAdvance'].forEach(f => {
+        const el = document.getElementById(f);
+        if (el) fd.append(f, el.value);
+      });
+      fd.append('wantsAdvance', document.getElementById('wantsCashAdvance')?.value === 'yes' ? 'true' : 'false');
       fd.append('consent', 'true');
+      // ID file upload
       const idFile = document.getElementById('idDocument').files[0];
       if (idFile) fd.append('idDocument', idFile);
-      const taxFiles = document.getElementById('taxDocument').files;
-      for (let i = 0; i < taxFiles.length; i++) fd.append('taxDocuments', taxFiles[i]);
       try {
         const res = await fetch('/api/leads', { method: 'POST', body: fd });
         const data = await res.json();
